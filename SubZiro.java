@@ -8,9 +8,14 @@ package mortalkombatbversion;
  *
  * @author Мария
  */
-public class Soldier extends Player{
+public class SubZiro extends Player{
     
-    public Soldier (int level, int health, int  damage, int attack){
+    public SubZiro(int level, int health, int damage , int attack){
         super (level, health, damage, attack);
+    }
+    
+    @Override
+    public String getName(){
+        return "Sub-Ziro";
     }
 }

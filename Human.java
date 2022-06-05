@@ -17,6 +17,7 @@ public class Human extends Player{
     private int points;
     private int experience;
     private int win;
+    private int nextexperience;
     
     
     
@@ -26,6 +27,7 @@ public class Human extends Player{
         //this.health=80;
         //this.damage=16;
         this.experience=0;
+        this.nextexperience=40;
         this.win=0;
         //this.attack=0;
     }
@@ -44,6 +46,9 @@ public class Human extends Player{
     }*/
     public int getExperience(){
         return this.experience;
+    }
+    public int getNextExperience(){
+        return this.nextexperience;
     }
     public int getWin(){
         return this.win;
@@ -66,6 +71,9 @@ public class Human extends Player{
     }*/
     public void setExperience(int e){
         this.experience+=e;
+    }
+    public void setNextExperience(int e){
+        this.nextexperience=e;
     }
     public void setWin(){
         this.win++;

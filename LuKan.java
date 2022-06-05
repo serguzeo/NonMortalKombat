@@ -8,9 +8,14 @@ package mortalkombatbversion;
  *
  * @author Мария
  */
-public class Mage extends Player{
+public class LuKan extends Player{
     
-    public Mage(int level, int health, int damage , int attack){
+    public LuKan(int level, int health, int  damage, int attack){
         super (level, health, damage, attack);
+    }
+    
+    @Override
+    public String getName(){
+        return "Lu Kan";
     }
 }

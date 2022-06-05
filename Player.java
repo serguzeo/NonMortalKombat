@@ -12,6 +12,7 @@ public class Player {
     
     private int level;
     private int health;
+    private int maxhealth;
     private int damage;
     private int attack;
     
@@ -20,6 +21,7 @@ public class Player {
         this.health=health;
         this.damage=damage;
         this.attack=attack;
+        this.maxhealth=health;
     }
    
     public void setLevel(){
@@ -28,11 +30,17 @@ public class Player {
     public void setHealth(int h){
         this.health+=h;
     }
+    public void setNewHealth(int h){
+        this.health=h;
+    }
     public void setDamage(int d){
         this.damage+=d;
     }
     public void setAttack(int a){
         this.attack=a;
+    }
+    public void setMaxHealth(int h){
+        this.maxhealth+=h;
     }
     
     public int getLevel(){
@@ -46,5 +54,12 @@ public class Player {
     }
     public int getAttack(){
         return this.attack;
+    }
+    public int getMaxHealth(){
+        return this.maxhealth;
+    }
+    
+    public String getName(){
+        return "";
     }
 }
