@@ -21,10 +21,13 @@ import javax.swing.JProgressBar;
  */
 public class Fight {
 
-    CharacterAction action = new CharacterAction();
+    //CharacterAction action = new CharacterAction();
     ChangeTexts change = new ChangeTexts();
+    int kind_attack[]={0};
     int experiences[] = {40, 90, 180, 260, 410};
     EnemyFabric fabric = new EnemyFabric();
+    int i = 1;
+    int k = -1;
     
     public void Move(Player p1, Player p2) {
 
@@ -42,16 +45,16 @@ public class Fight {
                 if (i >= 0.5) {
                     //оглушение
                 }
-                System.out.println(0);
+                //System.out.println(0);
                 break;
             }
             case "01":
-                System.out.println(0);
+                //System.out.println(0);
                 break;
         }
     }
 
-    public int[] ChooseBehavior(Player enemy) {
+    public int[] ChooseBehavior(Player enemy, CharacterAction action) {
         int arr[] = null;
         double i = Math.random();
         if (enemy instanceof Baraka) {
@@ -69,61 +72,76 @@ public class Fight {
         return arr;
     }
 
-    public void Round(int i, int k, Player human, Player enemy, int a, JLabel label, JLabel label2, JDialog dialog, JLabel label3) {
-        //int i = 1;
-        //int k = 0;
-        int kind_attack[] = ChooseBehavior(enemy);
-        //System.out.println("human " + human.getHealth() + "    enemy " + enemy.getHealth());
-        //while (human.getHealth()>0 & enemy.getHealth()>0){
+    public void Round( Player human, Player enemy, int a, JLabel label, 
+            JLabel label2, JDialog dialog, JLabel label3, CharacterAction action, 
+            JProgressBar pr1, JProgressBar pr2) {
+
         human.setAttack(a);
+        
+        if (k < kind_attack.length - 1) {
+            k++;
+        } else {
+            kind_attack = ChooseBehavior(enemy, action);
+            k = 0;
+        }
         enemy.setAttack(kind_attack[k]);
+        
         if (i % 2 == 1) {
             Move(human, enemy);
         } else {
             Move(enemy, human);
         }
-        i++;
-        if (k < kind_attack.length - 1) {
-            k++;
-        } else {
-            kind_attack = ChooseBehavior(enemy);
-            k = 0;
-        }
+        
         change.RoundTexts(human, enemy, label, label2);
-        //label.setText(Integer.toString(enemy.getHealth()) + "/" + Integer.toString(enemy.getMaxHealth()));
-        //label2.setText(Integer.toString(human.getHealth()) + "/" + Integer.toString(human.getMaxHealth()));
-        //System.out.println("human " + human.getHealth() + "    enemy " + enemy.getHealth());
+        action.HP(human, pr1);
+        action.HP(enemy, pr2);
         EndRound(human, enemy, dialog, label3);
-        //}
+        i++;
+
     }
 
     public void EndRound(Player human, Player enemy, JDialog dialog, JLabel label) {
         if (human.getHealth() <= 0 | enemy.getHealth() <= 0) {
             dialog.setVisible(true);
-            dialog.setBounds(200, 200, 450, 350);
+            dialog.setBounds(150, 150, 700, 600);
             if (human.getHealth() > 0) {
                 label.setText("You win");
 
             } else {
                 label.setText(enemy.getName() + " win");
             }
+            i=1;
+            k=0;
+            kind_attack=ResetAttack();
+            
+            
         }
     }
+    
+    public int[] ResetAttack(){
+        int a[]={0};
+        return a;
+    }
 
-    public Player NewRound(Player human, JLabel label, JProgressBar pr1, JProgressBar pr2, JLabel label2, JLabel text, JLabel label3) {
+    public Player NewRound(Player human, JLabel label, JProgressBar pr1, 
+            JProgressBar pr2, JLabel label2, JLabel text, JLabel label3, CharacterAction action) {
         if (human.getHealth() > 0) {
             ((Human) human).setWin();
-            action.AddPoints(((Human) human));
+            action.AddPoints(((Human) human), action.getEnemyes());
         }
-
-        human.setNewHealth(human.getMaxHealth());
+        
+        
         Player enemy1 = null;
-        int e = (int) (Math.random() * 4);
-        enemy1 = fabric.create(e, human, label, pr2, label2, text, label3);
+        //int e = (int) (Math.random() * 4);
+        enemy1 = action.ChooseEnemy(label, label2, text, label3);
                 //action.ChooseEmemy(human, label, pr2, label2, text, label3);
+        
+        pr1.setMaximum(human.getMaxHealth());
+        pr2.setMaximum(enemy1.getMaxHealth());
+        human.setNewHealth(human.getMaxHealth());
+        enemy1.setNewHealth(enemy1.getMaxHealth());
         action.HP(human, pr1);
         action.HP(enemy1, pr2);
-        //System.out.println(enemy1.getLevel());
         return enemy1;
     }
 

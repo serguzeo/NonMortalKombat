@@ -15,13 +15,13 @@ import javax.swing.JProgressBar;
 public class SonyaBlaydFabric implements EnemyFabricInterface {
 
     @Override
-    public Player create(Player human, JLabel label, JLabel label2) {
+    public Player create(/*Player human, JLabel label, JLabel label2*/) {
         Player enemy;
         ImageIcon icon1 = null;
-        enemy = new SonyaBlayd(human.getLevel() + 1, 80, 16, 1);
-        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Соня Блейд.jpg");
-        label.setIcon(icon1);
-        label2.setText("Соня Блейд (солдат)");
+        enemy = new SonyaBlayd(1, 80, 16, 1);
+        //icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Соня Блейд.jpg");
+        //label.setIcon(icon1);
+        //label2.setText("Соня Блейд (солдат)");
         return enemy;
     }
 

@@ -15,13 +15,13 @@ import javax.swing.JProgressBar;
 public class LuKanFabric implements EnemyFabricInterface {
 
     @Override
-    public Player create(Player human, JLabel label, JLabel label2) {
+    public Player create(/*Player human, JLabel label, JLabel label2*/) {
         Player enemy;
         ImageIcon icon1 = null;
-        enemy = new LuKan(human.getLevel() + 1, 70, 20, 1);
-        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Лю кан.jpg");
-        label.setIcon(icon1);
-        label2.setText("Лю Кан (боец)");
+        enemy = new LuKan(1, 70, 20, 1);
+        //icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Лю кан.jpg");
+        //label.setIcon(icon1);
+        //label2.setText("Лю Кан (боец)");
         return enemy;
     }
 }

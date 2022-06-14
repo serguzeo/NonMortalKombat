@@ -14,18 +14,21 @@ import mortalkombatbversion.Fight;
  */
 public class JFrame extends javax.swing.JFrame {
     
-    CharacterAction a = new CharacterAction();
-    Fight f = new Fight();
+    Game game = new Game();
+    
+    //CharacterAction a = new CharacterAction();
+    /*
     ChangeTexts change = new ChangeTexts();
-    EnemyFabric fabric = new EnemyFabric();
+    CharacterAction action = new CharacterAction();*/
+    //EnemyFabric fabric = new EnemyFabric();
     Human human = null;
     Player enemy = null;
     //Player new_enemy = null;
     //enemy = a.ChooseEmemy(jLabel4);
-    int e = (int) (Math.random() * 4);
+    //int e = (int) (Math.random() * 4);
     
-    int i=1;
-    int k=0;
+    //int i=1;
+    //int k=0;
     
     
     /**
@@ -274,11 +277,12 @@ public class JFrame extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel17))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel9)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -288,7 +292,7 @@ public class JFrame extends javax.swing.JFrame {
                                 .addGap(16, 16, 16)
                                 .addComponent(jLabel6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
@@ -317,17 +321,17 @@ public class JFrame extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(179, 226, 217));
 
         jLabel18.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel18.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Comic Sans MS", 1, 42)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("jLabel18");
         jLabel18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButton5.setBackground(new java.awt.Color(114, 218, 142));
+        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Дальше");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -341,22 +345,22 @@ public class JFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addGap(200, 200, 200)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(99, 99, 99)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -455,40 +459,41 @@ public class JFrame extends javax.swing.JFrame {
         jFrame1.setVisible(rootPaneCheckingEnabled);
         jFrame1.setSize(1000,700);
         human = new Human (0,80,16,1);
-        enemy = fabric.create(e, human, jLabel4, jProgressBar2, jLabel5, jLabel10, jLabel13);
+        
+        enemy = game.NewGame(human, enemy, jLabel4, jLabel5, jLabel10, jLabel13, jProgressBar1, jProgressBar2);
+        
+        /*game.action.setEnemyes();
+        enemy = game.action.ChooseEnemy(jLabel4, jLabel5, jLabel10, jLabel13);
                 //a.ChooseEmemy(human, jLabel4, jProgressBar2, jLabel5, jLabel10, jLabel13);
         
-        Fight f = new Fight();
+        //Fight f = new Fight();
         
-        a.HP(human, jProgressBar1);
-        a.HP(enemy, jProgressBar2);
+        game.action.HP(human, jProgressBar1);
+        game.action.HP(enemy, jProgressBar2);
+        jProgressBar2.setMaximum(enemy.getMaxHealth());*/
         
-        
-        int kind_attack[]=f.ChooseBehavior(enemy);
-        /*while (human.getHealth()>0 & mage.getHealth()>0){
-            f.Round(human, mage,1);
-        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        f.Round(i, k, human, enemy, 1, jLabel13, jLabel12, jDialog1, jLabel18);
+        game.fight.Round( human, enemy, 1, jLabel13, jLabel12, jDialog1, 
+                jLabel18, game.action, jProgressBar1, jProgressBar2);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        f.Round(i, k, human, enemy, 0, jLabel13, jLabel12, jDialog1, jLabel18);
+        game.fight.Round( human, enemy, 0, jLabel13, jLabel12, jDialog1, 
+                jLabel18, game.action, jProgressBar1, jProgressBar2);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        enemy = null;
-        enemy=f.NewRound(human, jLabel4, jProgressBar1, jProgressBar2, jLabel5, jLabel10, jLabel13);
-        //jLabel12.setText(Integer.toString(human.getMaxHealth())+"/"+Integer.toString(human.getMaxHealth()));
-        //human.setNewHealth(human.getMaxHealth());
-        //enemy = a.ChooseEmemy(jLabel4, jProgressBar2, jLabel5, jLabel10, jLabel13);
+        //enemy = null;
+        enemy=game.fight.NewRound(human, jLabel4, jProgressBar1, jProgressBar2, 
+                jLabel5, jLabel10, jLabel13, game.action);
+
         
-        change.NewRoundTexts(human, enemy, jProgressBar1, jProgressBar2, jLabel17, jLabel16, jLabel6, jLabel19, jLabel12);
-        i=1;
-        k=0;
+        game.change.NewRoundTexts(human, enemy, jProgressBar1, jProgressBar2, 
+                jLabel17, jLabel16, jLabel6, jLabel19, jLabel12, jLabel13, jLabel9);
+
         jDialog1.dispose();
         //a.HP(human, jProgressBar1);
         //a.HP(enemy, jProgressBar2);

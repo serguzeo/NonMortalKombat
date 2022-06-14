@@ -15,13 +15,13 @@ import javax.swing.JProgressBar;
 public class SubZiroFabric implements EnemyFabricInterface {
 
     @Override
-    public Player create(Player human, JLabel label, JLabel label2) {
+    public Player create(/*Player human, JLabel label, JLabel label2*/) {
         Player enemy;
         ImageIcon icon1 = null;
-        enemy = new SubZiro(human.getLevel() + 1, 60, 16, 1);
-        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Саб Зиро.jpg");
-        label.setIcon(icon1);
-        label2.setText("Саб-Зиро (маг)");
+        enemy = new SubZiro(1, 60, 16, 1);
+        //icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Саб Зиро.jpg");
+        //label.setIcon(icon1);
+        //label2.setText("Саб-Зиро (маг)");
         return enemy;
     }
 

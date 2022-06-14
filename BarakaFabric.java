@@ -15,13 +15,13 @@ import javax.swing.JProgressBar;
 public class BarakaFabric implements EnemyFabricInterface {
 
     @Override
-    public Player create(Player human, JLabel label, JLabel label2) {
+    public Player create(/*Player human, JLabel label, JLabel label2*/) {
         Player enemy;
         ImageIcon icon1 = null;
-        enemy = new Baraka(human.getLevel() + 1, 100, 12, 1);
-        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Барака.jpg");
-        label.setIcon(icon1);
-        label2.setText("Барака (танк)");
+        enemy = new Baraka(1, 100, 12, 1);
+        //icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Барака.jpg");
+        //label.setIcon(icon1);
+        //label2.setText("Барака (танк)");
         return enemy;
     }
 }

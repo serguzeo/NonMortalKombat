@@ -13,7 +13,7 @@ import javax.swing.JProgressBar;
  */
 public class EnemyFabric {
 
-    public Player create(int i, Player human, JLabel label, JProgressBar pr, JLabel label2, JLabel text, JLabel label3) {
+    public Player create(int i/*, Player human, JLabel label, JProgressBar pr, JLabel label2, JLabel text, JLabel label3*/) {
         EnemyFabricInterface fabric = null;
 
         switch (i) {
@@ -30,10 +30,10 @@ public class EnemyFabric {
                 fabric = new SonyaBlaydFabric();
                 break;
         }
-        Player enemy = fabric.create(human, label, label2);
-        pr.setMaximum(enemy.getMaxHealth());
+        Player enemy = fabric.create(/*human, label, label2*/);
+        /*pr.setMaximum(enemy.getMaxHealth());
         text.setText(Integer.toString(enemy.getDamage()));
         label3.setText(Integer.toString(enemy.getHealth()) + "/" + Integer.toString(enemy.getMaxHealth()));
-        return enemy;
+        */return enemy;
     }
 }

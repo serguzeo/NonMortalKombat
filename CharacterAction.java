@@ -4,8 +4,6 @@
  */
 package mortalkombatbversion;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -16,45 +14,60 @@ import javax.swing.JProgressBar;
  */
 public class CharacterAction {
 
-    int experience_for_next_level[] = {40, 90, 180, 260, 410, 1000};
+    private final int experience_for_next_level[] = {40, 90, 180, 260, 410, 1000};
 
     private final int kind_fight[][] = {{1, 0}, {1, 1, 0}, {0, 1, 0}, {1, 1, 1, 1}};
 
-    /*public Player ChooseEmemy(Player human, JLabel label, JProgressBar pr, JLabel label2, JLabel text, JLabel label3) {
+    private Player enemyes[] = new Player[4];
+
+    EnemyFabric fabric = new EnemyFabric();
+
+    private Player enemyy = null;
+
+    public void setEnemyes() {
+        enemyes[0] = fabric.create(0);
+        enemyes[1] = fabric.create(1);
+        enemyes[2] = fabric.create(2);
+        enemyes[3] = fabric.create(3);
+    }
+
+    public Player[] getEnemyes() {
+        return this.enemyes;
+    }
+
+    public Player ChooseEnemy(/*Player enemy,*/JLabel label, /*JProgressBar pr,*/ JLabel label2, JLabel text, JLabel label3) {
         int i = (int) (Math.random() * 4);
-        Player enemy = new Player(0, 0, 0, 0);
         ImageIcon icon1 = null;
+        //enemyy =null;
         switch (i) {
             case 0:
-                enemy = new Baraka(human.getLevel() + 1, 100, 12, 1);
+                enemyy = enemyes[0];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Барака.jpg");
-                label.setIcon(icon1);
                 label2.setText("Барака (танк)");
                 break;
             case 1:
-                enemy = new SubZiro(human.getLevel() + 1, 60, 16, 1);
+                enemyy = enemyes[1];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Саб Зиро.jpg");
-                label.setIcon(icon1);
                 label2.setText("Саб-Зиро (маг)");
                 break;
             case 2:
-                enemy = new LuKan(human.getLevel() + 1, 70, 20, 1);
+                enemyy = enemyes[2];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Лю кан.jpg");
-                label.setIcon(icon1);
                 label2.setText("Лю Кан (боец)");
                 break;
             case 3:
-                enemy = new SonyaBlayd(human.getLevel() + 1, 80, 16, 1);
+                enemyy = enemyes[3];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Соня Блейд.jpg");
-                label.setIcon(icon1);
                 label2.setText("Соня Блейд (солдат)");
                 break;
         }
-        pr.setMaximum(enemy.getMaxHealth());
-        text.setText(Integer.toString(enemy.getDamage()));
-        label3.setText(Integer.toString(enemy.getHealth()) + "/" + Integer.toString(enemy.getMaxHealth()));
-        return enemy;
-    }*/
+        //pr.setMaximum(enemy.getMaxHealth());
+        label.setIcon(icon1);
+        text.setText(Integer.toString(enemyy.getDamage()));
+        label3.setText(Integer.toString(enemyy.getHealth()) + "/" + Integer.toString(enemyy.getMaxHealth()));
+        return enemyy;
+    }
+
     public int[] EnemyBehavior(int k1, int k2, int k3, int k4, double i) {
         int arr[] = null;
         if (i < k1 * 0.01) {
@@ -74,28 +87,14 @@ public class CharacterAction {
 
     public void HP(Player player, JProgressBar progress) {
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                progress.setMaximum(player.getMaxHealth());
-                while (player.getHealth() > -20) {
-                    if (player.getHealth() >= 0) {
-                        progress.setValue(player.getHealth());
-                    } else {
-                        progress.setValue(0);
-                    }
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        });
-        t.start();
+        if (player.getHealth() >= 0) {
+            progress.setValue(player.getHealth());
+        } else {
+            progress.setValue(0);
+        }
     }
 
-    public void AddPoints(Human human) {
+    public void AddPoints(Human human, Player[] enemyes) {
         switch (human.getLevel()) {
             case 0:
                 human.setExperience(20);
@@ -123,32 +122,62 @@ public class CharacterAction {
                 human.setLevel();
                 human.setNextExperience(experience_for_next_level[i + 1]);
                 NewHealthHuman(human);
+                for (int j = 0; j < 4; j++) {
+                    NewHealthEnemy(enemyes[j], human);
+                    //System.out.println("ggg");
+                }
             }
         }
     }
-    
-    public void NewHealthHuman(Human human){
-        int hp=0;
-        int damage=0;
-        switch (human.getLevel()){
+
+    public void NewHealthHuman(Human human) {
+        int hp = 0;
+        int damage = 0;
+        switch (human.getLevel()) {
             case 1:
-                hp=25;
-                damage=2;
+                hp = 25;
+                damage = 3;
                 break;
             case 2:
-                hp=30;
-                damage=3;
+                hp = 30;
+                damage = 3;
                 break;
             case 3:
-                hp=30;
-                damage=4;
+                hp = 30;
+                damage = 4;
                 break;
             case 4:
-                hp=40;
-                damage=6;
+                hp = 40;
+                damage = 6;
                 break;
         }
         human.setMaxHealth(hp);
         human.setDamage(damage);
+    }
+
+    public void NewHealthEnemy(Player enemy, Human human) {
+        int hp = 0;
+        int damage = 0;
+        switch (human.getLevel()) {
+            case 1:
+                hp = 32;
+                damage = 25;
+                break;
+            case 2:
+                hp = 30;
+                damage = 20;
+                break;
+            case 3:
+                hp = 23;
+                damage = 24;
+                break;
+            case 4:
+                hp = 25;
+                damage = 26;
+                break;
+        }
+        enemy.setMaxHealth((int) enemy.getMaxHealth() * hp/100);
+        enemy.setDamage((int) enemy.getDamage() * damage/100);
+        enemy.setLevel();
     }
 }
