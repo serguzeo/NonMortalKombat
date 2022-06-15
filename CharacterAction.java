@@ -38,30 +38,28 @@ public class CharacterAction {
     public Player ChooseEnemy(/*Player enemy,*/JLabel label, /*JProgressBar pr,*/ JLabel label2, JLabel text, JLabel label3) {
         int i = (int) (Math.random() * 4);
         ImageIcon icon1 = null;
-        //enemyy =null;
         switch (i) {
             case 0:
                 enemyy = enemyes[0];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Барака.jpg");
-                label2.setText("Барака (танк)");
+                label2.setText("Baraka (танк)");
                 break;
             case 1:
                 enemyy = enemyes[1];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Саб Зиро.jpg");
-                label2.setText("Саб-Зиро (маг)");
+                label2.setText("Sub-Zero (маг)");
                 break;
             case 2:
                 enemyy = enemyes[2];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Лю кан.jpg");
-                label2.setText("Лю Кан (боец)");
+                label2.setText("Liu Kang (боец)");
                 break;
             case 3:
                 enemyy = enemyes[3];
                 icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Соня Блейд.jpg");
-                label2.setText("Соня Блейд (солдат)");
+                label2.setText("Sonya Blade (солдат)");
                 break;
         }
-        //pr.setMaximum(enemy.getMaxHealth());
         label.setIcon(icon1);
         text.setText(Integer.toString(enemyy.getDamage()));
         label3.setText(Integer.toString(enemyy.getHealth()) + "/" + Integer.toString(enemyy.getMaxHealth()));
@@ -124,7 +122,6 @@ public class CharacterAction {
                 NewHealthHuman(human);
                 for (int j = 0; j < 4; j++) {
                     NewHealthEnemy(enemyes[j], human);
-                    //System.out.println("ggg");
                 }
             }
         }

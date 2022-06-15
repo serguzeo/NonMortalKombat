@@ -4,18 +4,19 @@
  */
 package mortalkombatbversion;
 
+
+
 /**
  *
  * @author Мария
  */
-public class LuKan extends Player{
-    
-    public LuKan(int level, int health, int  damage, int attack){
-        super (level, health, damage, attack);
-    }
-    
+public class SubZeroFabric implements EnemyFabricInterface {
+
     @Override
-    public String getName(){
-        return "Lu Kan";
+    public Player create() {
+        Player enemy;
+        enemy = new SubZero(1, 60, 16, 1);
+        return enemy;
     }
+
 }

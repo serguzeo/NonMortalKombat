@@ -4,18 +4,18 @@
  */
 package mortalkombatbversion;
 
-
-
 /**
  *
  * @author Мария
  */
-public class BarakaFabric implements EnemyFabricInterface {
-
+public class SonyaBlade extends Player{
+    
+    public SonyaBlade (int level, int health, int  damage, int attack){
+        super (level, health, damage, attack);
+    }
+    
     @Override
-    public Player create() {
-        Player enemy;
-        enemy = new Baraka(1, 100, 12, 1);
-        return enemy;
+    public String getName(){
+        return "Sonya Blade";
     }
 }

@@ -5,17 +5,17 @@
 package mortalkombatbversion;
 
 
-
 /**
  *
  * @author Мария
  */
-public class BarakaFabric implements EnemyFabricInterface {
+public class SonyaBladeFabric implements EnemyFabricInterface {
 
     @Override
     public Player create() {
         Player enemy;
-        enemy = new Baraka(1, 100, 12, 1);
+        enemy = new SonyaBlade(1, 80, 16, 1);
         return enemy;
     }
+
 }

@@ -10,10 +10,7 @@ package mortalkombatbversion;
  */
 public class Human extends Player{
     
-    //private int level;
-    //private int attack;
-    //private int health;
-    //private int damage;
+
     private int points;
     private int experience;
     private int win;
@@ -24,26 +21,15 @@ public class Human extends Player{
     public Human(int level, int health, int  damage, int attack){
         super (level, health, damage, attack);
         this.points=0;
-        //this.health=80;
-        //this.damage=16;
         this.experience=0;
         this.nextexperience=40;
         this.win=0;
-        //this.attack=0;
     }
     
-    /*public int getLevel(){
-        return this.level;
-    }*/
+
     public int getPoints(){
         return this.points;
     }
-    /*public int getHealth(){
-        return this.health;
-    }
-    public int getDamage(){
-        return this.damage;
-    }*/
     public int getExperience(){
         return this.experience;
     }
@@ -53,22 +39,10 @@ public class Human extends Player{
     public int getWin(){
         return this.win;
     }
-    /*public int getAttack(){
-        return this.attack;
-    }
-    
-    public void setLevel(){
-        this.level++;
-    }*/
+
     public void setPoints(int p){
         this.points+=p;
     }
-    /*public void setHealth(int h){
-        this.health+=h;
-    }
-    public void setDamage(int d){
-        this.damage+=d;
-    }*/
     public void setExperience(int e){
         this.experience+=e;
     }
@@ -78,8 +52,11 @@ public class Human extends Player{
     public void setWin(){
         this.win++;
     }
-    /*public void setAttack(int a){
-        this.attack=a;
-    }*/
+    
+    @Override
+    public String getName(){
+        return "You";
+    }
+
     
 }

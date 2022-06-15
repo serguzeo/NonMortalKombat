@@ -10,12 +10,12 @@ package mortalkombatbversion;
  *
  * @author Мария
  */
-public class BarakaFabric implements EnemyFabricInterface {
+public class LiuKangFabric implements EnemyFabricInterface {
 
     @Override
     public Player create() {
         Player enemy;
-        enemy = new Baraka(1, 100, 12, 1);
+        enemy = new LiuKang(1, 70, 20, 1);
         return enemy;
     }
 }
