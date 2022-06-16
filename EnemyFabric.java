@@ -13,7 +13,7 @@ import javax.swing.JProgressBar;
  */
 public class EnemyFabric {
 
-    public Player create(int i) {
+    public Player create(int i, int j) {
         EnemyFabricInterface fabric = null;
 
         switch (i) {
@@ -29,8 +29,11 @@ public class EnemyFabric {
             case 3:
                 fabric = new SonyaBladeFabric();
                 break;
+            case 4:
+                fabric = new ShaoKahnFabric();
+                break;
         }
-        Player enemy = fabric.create();
+        Player enemy = fabric.create(j);
         return enemy;
     }
 }

@@ -18,24 +18,26 @@ public class CharacterAction {
 
     private final int kind_fight[][] = {{1, 0}, {1, 1, 0}, {0, 1, 0}, {1, 1, 1, 1}};
 
-    private Player enemyes[] = new Player[4];
+    private Player enemyes[] = new Player[6];
 
     EnemyFabric fabric = new EnemyFabric();
 
     private Player enemyy = null;
 
     public void setEnemyes() {
-        enemyes[0] = fabric.create(0);
-        enemyes[1] = fabric.create(1);
-        enemyes[2] = fabric.create(2);
-        enemyes[3] = fabric.create(3);
+        enemyes[0] = fabric.create(0,0);
+        enemyes[1] = fabric.create(1,0);
+        enemyes[2] = fabric.create(2,0);
+        enemyes[3] = fabric.create(3,0);
+        enemyes[3] = fabric.create(4,0);
+        enemyes[3] = fabric.create(4,0);
     }
 
     public Player[] getEnemyes() {
         return this.enemyes;
     }
 
-    public Player ChooseEnemy(/*Player enemy,*/JLabel label, /*JProgressBar pr,*/ JLabel label2, JLabel text, JLabel label3) {
+    public Player ChooseEnemy(JLabel label, JLabel label2, JLabel text, JLabel label3) {
         int i = (int) (Math.random() * 4);
         ImageIcon icon1 = null;
         switch (i) {

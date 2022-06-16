@@ -27,35 +27,40 @@ public class Fight {
     int k = -1;
     int stun = 0;
 
-    public void Move(Player p1, Player p2, JLabel l) {
+    public void Move(Player p1, Player p2, JLabel l, JLabel l2) {
         if (stun==1){
             p1.setAttack(-1);
         }
         switch (Integer.toString(p1.getAttack()) + Integer.toString(p2.getAttack())) {
             case "10":
                 p1.setHealth(-(int) (p2.getDamage() * 0.5));
+                l2.setText(p2.getName()+" counterattacked");
                 break;
             case "11":
                 p2.setHealth(-p1.getDamage());
+                l2.setText(p1.getName()+" attacked");
                 break;
             case "00": {
                 double v = Math.random();
                 if (v >= 0.5) {
                     stun=1;
                 }
+                l2.setText("Both defended themselves");
                 break;
             }
             case "01":
-                
+                l2.setText(p1.getName()+" didn't attacked");
                 break;
             case "-10":
                 l.setText(p1.getName()+" was stunned");
                 stun=0;
+                l2.setText(p2.getName()+" didn't attacked");
                 break;
             case "-11":
                 p1.setHealth(-p2.getDamage());
                 l.setText(p1.getName()+" was stunned");
                 stun=0;
+                l2.setText(p2.getName()+" attacked");
                 break;
         }
     }
@@ -82,7 +87,7 @@ public class Fight {
             JLabel label2, JDialog dialog, JLabel label3, CharacterAction action,
             JProgressBar pr1, JProgressBar pr2, JDialog dialog1, 
             JDialog dialog2, JFrame frame, ArrayList<Result> results, 
-            JLabel label4, JLabel label5, JLabel label6, JLabel label7) {
+            JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8) {
         label7.setText("");
         human.setAttack(a);
 
@@ -94,9 +99,9 @@ public class Fight {
         }
         enemy.setAttack(kind_attack[k]);
         if (i % 2 == 1) {
-            Move(human, enemy, label7);
+            Move(human, enemy, label7, label8);
         } else {
-            Move(enemy, human, label7);
+            Move(enemy, human, label7, label8);
         }
         i++;
         change.RoundTexts(human, enemy, label, label2, i, label6);

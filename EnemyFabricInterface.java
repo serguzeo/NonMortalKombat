@@ -12,5 +12,5 @@ import javax.swing.JProgressBar;
  * @author Мария
  */
 public interface EnemyFabricInterface {
-    public Player create();
+    public Player create(int i);
 }

@@ -4,18 +4,18 @@
  */
 package mortalkombatbversion;
 
-
-
 /**
  *
  * @author Мария
  */
-public class LiuKangFabric implements EnemyFabricInterface {
-
+public class ShaoKahn extends Player{
+    
+    public ShaoKahn(int level, int health, int  damage, int attack){
+        super (level, health, damage, attack);
+    }
+    
     @Override
-    public Player create(int i) {
-        Player enemy;
-        enemy = new LiuKang(1, 70, 20, 1);
-        return enemy;
+    public String getName(){
+        return "Shao Kahn";
     }
 }
