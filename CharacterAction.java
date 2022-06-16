@@ -43,22 +43,22 @@ public class CharacterAction {
         switch (i) {
             case 0:
                 enemyy = enemyes[0];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Барака.jpg");
+                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Baraka.jpg");
                 label2.setText("Baraka (танк)");
                 break;
             case 1:
                 enemyy = enemyes[1];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Саб Зиро.jpg");
+                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Sub-Zero.jpg");
                 label2.setText("Sub-Zero (маг)");
                 break;
             case 2:
                 enemyy = enemyes[2];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Лю кан.jpg");
+                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Liu Kang.jpg");
                 label2.setText("Liu Kang (боец)");
                 break;
             case 3:
                 enemyy = enemyes[3];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Соня Блейд.jpg");
+                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Sonya Blade.jpg");
                 label2.setText("Sonya Blade (солдат)");
                 break;
         }
