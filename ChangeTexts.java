@@ -6,6 +6,7 @@ package mortalkombatbversion;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -17,7 +18,8 @@ public class ChangeTexts {
 
     public void NewRoundTexts(Player human, Player enemy, JProgressBar pr1,
             JProgressBar pr2, JLabel label, JLabel label2, JLabel label3,
-            JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8, int i) {
+            JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8, JLabel label9,
+            int i, Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
         label.setText(Integer.toString(((Human) human).getPoints()));
         label2.setText(Integer.toString(((Human) human).getExperience()) + "/" + ((Human) human).getNextExperience());
         label3.setText(Integer.toString(human.getLevel()) + " level");
@@ -31,6 +33,11 @@ public class ChangeTexts {
         else{
             label8.setText(enemy.getName()+"'s turn");
         }
+        /*rb1.setText(items[0].getName()+", "+items[0].getCount()+" шт");
+        rb2.setText(items[1].getName()+", "+items[1].getCount()+" шт");
+        rb3.setText(items[2].getName()+", "+items[2].getCount()+" шт");*/
+        BagText(items, rb1, rb2, rb3);
+        label9.setText("");
     }
 
     public void RoundTexts(Player human, Player enemy, JLabel label, JLabel label2, int i, JLabel label3) {
@@ -59,6 +66,12 @@ public class ChangeTexts {
         else {
             label.setText("Победа не на вашей стороне");
         }
+    }
+    
+    public void BagText( Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3){
+        rb1.setText(items[0].getName()+", "+items[0].getCount()+" шт");
+        rb2.setText(items[1].getName()+", "+items[1].getCount()+" шт");
+        rb3.setText(items[2].getName()+", "+items[2].getCount()+" шт");
     }
 
 }

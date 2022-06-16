@@ -33,7 +33,6 @@ public class Game {
             JLabel L3, JLabel L4, JProgressBar pr2) {
         action.setEnemyes();
         Player enemy = action.ChooseEnemy(L1, L2, L3, L4);
-        //action.HP(human, pr1);
         action.HP(enemy, pr2);
         pr2.setMaximum(enemy.getMaxHealth());
         return enemy;
@@ -49,7 +48,7 @@ public class Game {
     public void EndGameTop(Human human, JTextField text, JTable table) throws IOException {
         results.add(new Result(text.getText(), human.getPoints()));
         results.sort(Comparator.comparing(Result::getPoints).reversed());
-        WriteToTree(table);
+        WriteToTable(table);
         WriteToExcel();
     }
     
@@ -85,7 +84,7 @@ public class Game {
         }
     }
     
-    public void WriteToTree(JTable table){
+    public void WriteToTable(JTable table){
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         for (int i=0; i<results.size();i++){
             if (i<10){

@@ -5,6 +5,7 @@
 package mortalkombatbversion;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -25,12 +26,12 @@ public class CharacterAction {
     private Player enemyy = null;
 
     public void setEnemyes() {
-        enemyes[0] = fabric.create(0,0);
-        enemyes[1] = fabric.create(1,0);
-        enemyes[2] = fabric.create(2,0);
-        enemyes[3] = fabric.create(3,0);
-        enemyes[3] = fabric.create(4,0);
-        enemyes[3] = fabric.create(4,0);
+        enemyes[0] = fabric.create(0, 0);
+        enemyes[1] = fabric.create(1, 0);
+        enemyes[2] = fabric.create(2, 0);
+        enemyes[3] = fabric.create(3, 0);
+        enemyes[4] = fabric.create(4, 0);
+        enemyes[5] = fabric.create(4, 0);
     }
 
     public Player[] getEnemyes() {
@@ -68,6 +69,24 @@ public class CharacterAction {
         return enemyy;
     }
 
+    public Player ChooseBoss(JLabel label, JLabel label2, JLabel text, JLabel label3, int i) {
+        ImageIcon icon1 = null;
+        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Shao Kahn.png");
+        label2.setText("Shao Kahn (босс)");
+        switch (i) {
+            case 2:
+                enemyy = enemyes[4];
+                break;
+            case 4:
+                enemyy = enemyes[5];
+                break;
+        }
+        label.setIcon(icon1);
+        text.setText(Integer.toString(enemyy.getDamage()));
+        label3.setText(Integer.toString(enemyy.getHealth()) + "/" + Integer.toString(enemyy.getMaxHealth()));
+        return enemyy;
+    }
+
     public int[] EnemyBehavior(int k1, int k2, int k3, int k4, double i) {
         int arr[] = null;
         if (i < k1 * 0.01) {
@@ -81,6 +100,27 @@ public class CharacterAction {
         }
         if (i >= (k1 + k2 + k3) * 0.01 & i < 1) {
             arr = kind_fight[3];
+        }
+        return arr;
+    }
+
+    public int[] ChooseBehavior(Player enemy, CharacterAction action) {
+        int arr[] = null;
+        double i = Math.random();
+        if (enemy instanceof Baraka) {
+            arr = action.EnemyBehavior(15, 15, 60, 10, i);
+        }
+        if (enemy instanceof SubZero) {
+            arr = action.EnemyBehavior(25, 25, 0, 50, i);
+        }
+        if (enemy instanceof LiuKang) {
+            arr = action.EnemyBehavior(13, 13, 10, 64, i);
+        }
+        if (enemy instanceof SonyaBlade) {
+            arr = action.EnemyBehavior(25, 25, 50, 0, i);
+        }
+        if (enemy instanceof ShaoKahn) {
+            arr = action.EnemyBehavior(10, 45, 0, 45, i);
         }
         return arr;
     }
@@ -126,6 +166,42 @@ public class CharacterAction {
                     NewHealthEnemy(enemyes[j], human);
                 }
             }
+        }
+    }
+
+    public void AddPointsBoss(Human human, Player[] enemyes) {
+        switch (human.getLevel()) {
+            case 2:
+                human.setExperience(30);
+                human.setPoints(45 + human.getHealth() / 2);
+                break;
+            case 4:
+                human.setExperience(50);
+                human.setPoints(65 + human.getHealth() / 2);
+                break;
+        }
+        for (int i = 0; i < 5; i++) {
+            if (experience_for_next_level[i] == human.getExperience()) {
+                human.setLevel();
+                human.setNextExperience(experience_for_next_level[i + 1]);
+                NewHealthHuman(human);
+                for (int j = 0; j < 4; j++) {
+                    NewHealthEnemy(enemyes[j], human);
+                }
+            }
+        }
+    }
+
+    public void AddItems(int k1, int k2, int k3, Items[] items) {
+        double i = Math.random();
+        if (i < k1 * 0.01) {
+            items[0].setCount(1);
+        }
+        if (i >= k1 * 0.01 & i < (k1 + k2) * 0.01) {
+            items[1].setCount(1);
+        }
+        if (i >= (k1 + k2) * 0.01 & i < (k1 + k2 + k3) * 0.01) {
+            items[2].setCount(1);
         }
     }
 
@@ -175,8 +251,39 @@ public class CharacterAction {
                 damage = 26;
                 break;
         }
-        enemy.setMaxHealth((int) enemy.getMaxHealth() * hp/100);
-        enemy.setDamage((int) enemy.getDamage() * damage/100);
+        enemy.setMaxHealth((int) enemy.getMaxHealth() * hp / 100);
+        enemy.setDamage((int) enemy.getDamage() * damage / 100);
         enemy.setLevel();
+    }
+
+    public void UseItem(Player human, Items[] items, String name, JDialog dialog, JDialog dialog1) {
+        switch (name) {
+            case "jRadioButton1":
+                if (items[0].getCount() > 0) {
+                    human.setHealth((int) (human.getMaxHealth() * 0.25));
+                    items[0].setCount(-1);
+                } else {
+                    dialog.setVisible(true);
+                    dialog.setBounds(300, 200, 400, 300);
+                }
+                break;
+            case "jRadioButton2":
+                if (items[1].getCount() > 0) {
+                    human.setHealth((int) (human.getMaxHealth() * 0.5));
+                    items[1].setCount(-1);
+                } else {
+                    dialog.setVisible(true);
+                    dialog.setBounds(300, 200, 400, 300);
+                }
+                break;
+            case "jRadioButton3":
+                dialog.setVisible(true);
+                dialog.setBounds(300, 200, 400, 300);
+                break;
+        }
+        
+        if(dialog.isVisible()==false){
+            dialog1.dispose();
+        }
     }
 }
