@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package mortalkombatbversion;
+package Game;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,23 +10,25 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import Characters.Human;
+import Characters.Player;
+import Handlers.ChangeTexts;
+import Handlers.CharacterAction;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author Мария
- */
+
 public class Game {
 
-    CharacterAction action = new CharacterAction();
-    ChangeTexts change = new ChangeTexts();
-    Fight fight = new Fight();
+    public CharacterAction action = new CharacterAction();
+    public ChangeTexts change = new ChangeTexts();
+    public Fight fight = new Fight();
     private ArrayList<Result> results = new ArrayList<>();
 
     public Player NewEnemy(JLabel L1, JLabel L2,
-            JLabel L3, JLabel L4, JProgressBar pr2) {
+                           JLabel L3, JLabel L4, JProgressBar pr2) {
         action.setEnemyes();
         Player enemy = action.ChooseEnemy(L1, L2, L3, L4);
         action.HP(enemy, pr2);
@@ -67,7 +65,7 @@ public class Game {
                 r2.createCell(2).setCellValue(results.get(i).getPoints());
             }
         }
-        File f = new File("C:\\Users\\Мария\\Desktop\\Results.xlsx");
+        File f = new File("./resources/Results.xlsx");
         book.write(new FileOutputStream(f));
         book.close();
     }
@@ -77,10 +75,10 @@ public class Game {
     }
 
     public void ReadFromExcel() throws IOException{
-        XSSFWorkbook book = new XSSFWorkbook("C:\\Users\\Мария\\Desktop\\Results.xlsx");
+        XSSFWorkbook book = new XSSFWorkbook("./resources/Results.xlsx");
         XSSFSheet sh = book.getSheetAt(0);
-        for (int i=1; i<=sh.getLastRowNum();i++) {
-            results.add(new Result(sh.getRow(i).getCell(1).getStringCellValue(),(int)sh.getRow(i).getCell(2).getNumericCellValue()));
+        for (int i=0; i<=sh.getLastRowNum();i++) {
+            results.add(new Result(sh.getRow(i).getCell(0).getStringCellValue(),(int)sh.getRow(i).getCell(1).getNumericCellValue()));
         }
     }
     

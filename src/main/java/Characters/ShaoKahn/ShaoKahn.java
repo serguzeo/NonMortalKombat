@@ -2,21 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mortalkombatbversion;
+package Characters.ShaoKahn;
+
+import Characters.Player;
 
 /**
  *
  * @author Мария
  */
-public class Baraka extends Player{
+public class ShaoKahn extends Player {
     
-    public Baraka(int level, int health, int  damage, int attack){
+    public ShaoKahn(int level, int health, int  damage, int attack){
         super (level, health, damage, attack);
     }
     
     @Override
     public String getName(){
-        return "Baraka";
+        return "Shao Kahn";
     }
-    
 }

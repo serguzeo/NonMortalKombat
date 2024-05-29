@@ -1,30 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package mortalkombatbversion;
+package GUI;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Characters.Human;
+import Characters.Player;
+import Game.*;
 
-/**
- *
- * @author Мария
- */
+
+
 public class JFrames extends javax.swing.JFrame {
     
     Game game = new Game();
-    Human human = null;
+    Player human = null;
     Player enemy = null;
     Items[] items = new Items[3];
     String nameButton = "";
 
-    
-    /**
-     * Creates new form JFrame
-     */
+
     public JFrames() {
         initComponents();
         try {
@@ -123,7 +117,7 @@ public class JFrames extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Мария\\Desktop\\Kitana.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("./resources/img/kitana1.png")); // NOI18N
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
@@ -889,7 +883,7 @@ public class JFrames extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Мария\\Desktop\\MK.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("./resources/img/mk.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1003,7 +997,7 @@ public class JFrames extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            game.EndGameTop(human, jTextField1, jTable1);
+            game.EndGameTop((Human) human, jTextField1, jTable1);
         } catch (IOException ex) {
             Logger.getLogger(JFrames.class.getName()).log(Level.SEVERE, null, ex);
         }

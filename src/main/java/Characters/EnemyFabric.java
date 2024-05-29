@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mortalkombatbversion;
+package Characters;
 
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
+import Characters.Baraka.BarakaFabric;
+import Characters.LiuKang.LiuKangFabric;
+import Characters.ShaoKahn.ShaoKahnFabric;
+import Characters.SonyaBlade.SonyaBladeFabric;
+import Characters.SubZero.SubZeroFabric;
 
 /**
  *

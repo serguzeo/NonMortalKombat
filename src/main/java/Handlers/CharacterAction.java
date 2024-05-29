@@ -2,7 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mortalkombatbversion;
+package Handlers;
+
+import Characters.Baraka.Baraka;
+import Characters.EnemyFabric;
+import Characters.Human;
+import Characters.LiuKang.LiuKang;
+import Characters.Player;
+import Characters.ShaoKahn.ShaoKahn;
+import Characters.SonyaBlade.SonyaBlade;
+import Characters.SubZero.SubZero;
+import Game.Items;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -44,22 +54,22 @@ public class CharacterAction {
         switch (i) {
             case 0:
                 enemyy = enemyes[0];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Baraka.jpg");
+                icon1 = new ImageIcon("./resources/img/baraka.jpeg");
                 label2.setText("Baraka (танк)");
                 break;
             case 1:
                 enemyy = enemyes[1];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Sub-Zero.jpg");
+                icon1 = new ImageIcon("./resources/img/sub.jpg");
                 label2.setText("Sub-Zero (маг)");
                 break;
             case 2:
                 enemyy = enemyes[2];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Liu Kang.jpg");
+                icon1 = new ImageIcon("./resources/img/liukang.jpg");
                 label2.setText("Liu Kang (боец)");
                 break;
             case 3:
                 enemyy = enemyes[3];
-                icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Sonya Blade.jpg");
+                icon1 = new ImageIcon("./resources/img/sonyablade.png");
                 label2.setText("Sonya Blade (солдат)");
                 break;
         }
@@ -71,7 +81,7 @@ public class CharacterAction {
 
     public Player ChooseBoss(JLabel label, JLabel label2, JLabel text, JLabel label3, int i) {
         ImageIcon icon1 = null;
-        icon1 = new ImageIcon("C:\\Users\\Мария\\Desktop\\Shao Kahn.png");
+        icon1 = new ImageIcon("./resources/img/kao.jpeg");
         label2.setText("Shao Kahn (босс)");
         switch (i) {
             case 2:

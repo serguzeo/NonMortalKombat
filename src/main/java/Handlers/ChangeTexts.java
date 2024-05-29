@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mortalkombatbversion;
+package Handlers;
+
+import Characters.Human;
+import Characters.Player;
+import Game.Items;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -17,9 +21,9 @@ public class ChangeTexts {
 
 
     public void NewRoundTexts(Player human, Player enemy, JProgressBar pr1,
-            JProgressBar pr2, JLabel label, JLabel label2, JLabel label3,
-            JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8, JLabel label9,
-            int i, Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
+                              JProgressBar pr2, JLabel label, JLabel label2, JLabel label3,
+                              JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8, JLabel label9,
+                              int i, Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
         label.setText(Integer.toString(((Human) human).getPoints()));
         label2.setText(Integer.toString(((Human) human).getExperience()) + "/" + ((Human) human).getNextExperience());
         label3.setText(Integer.toString(human.getLevel()) + " level");
