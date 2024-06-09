@@ -7,10 +7,15 @@ package MKRefactor.Handlers;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -76,31 +81,37 @@ public class Game {
      * Запись результатов в файл
      * @throws IOException
      */
-    public void writeToExcel() throws IOException, URISyntaxException{
-        XSSFWorkbook book = new XSSFWorkbook();
-        XSSFSheet sheet = book.createSheet("Результаты ТОП-10");
-        XSSFRow r = sheet.createRow(0);
-        r.createCell(0).setCellValue("№");
-        r.createCell(1).setCellValue("Имя");
-        r.createCell(2).setCellValue("Количество баллов");
-        for (int i = 0; i < results.size(); i++){
-            if (i < 10){
-                XSSFRow r2 = sheet.createRow(i + 1);
-                r2.createCell(0).setCellValue(i + 1);
-                r2.createCell(1).setCellValue(results.get(i).getName());
-                r2.createCell(2).setCellValue(results.get(i).getPoints());
+    public void writeToExcel() throws IOException, URISyntaxException {
+        URL url = Objects.requireNonNull(getClass().getClassLoader().getResource("Results.xlsx"));
+
+        // Создание временного файла
+        Path tempFile = Files.createTempFile("Results", ".xlsx");
+        try (InputStream is = url.openStream()) {
+            Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        // Открытие временного файла для записи
+        try (XSSFWorkbook book = new XSSFWorkbook(Files.newInputStream(tempFile))) {
+            XSSFSheet sheet = book.getSheetAt(0);
+            XSSFRow r = sheet.createRow(0);
+            r.createCell(0).setCellValue("№");
+            r.createCell(1).setCellValue("Имя");
+            r.createCell(2).setCellValue("Количество баллов");
+
+            for (int i = 0; i < results.size(); i++) {
+                if (i < 10) {
+                    XSSFRow r2 = sheet.createRow(i + 1);
+                    r2.createCell(0).setCellValue(i + 1);
+                    r2.createCell(1).setCellValue(results.get(i).getName());
+                    r2.createCell(2).setCellValue(results.get(i).getPoints());
+                }
+            }
+
+            // Запись изменений в временный файл
+            try (FileOutputStream fileOutputStream = new FileOutputStream(tempFile.toFile())) {
+                book.write(fileOutputStream);
             }
         }
-        //InputStream inputStream = Game.class.getClassLoader().getResourceAsStream("ResultsTable.xlsx");
-        //URL url = this.getClass().getResource("/ResultsTable.xlsx");
-        //File f = new File(url.toURI());
-        // File file = new File("./ResultsTable.xlsx");
-        //FileUtils.copyToFile(inputStream, f);
-        System.out.println("1");
-        File file = new File("./Results.xlsx");
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        book.write(fileOutputStream);
-        book.close();
     }
 
     public ArrayList<Result> getResults(){
