@@ -1,6 +1,5 @@
 package MKRefactor.GUI;
 
-import MKRefactor.Handlers.*;
 import MKRefactor.Game.*;
 
 import java.awt.*;

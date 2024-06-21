@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MKRefactor.Handlers;
+package MKRefactor.Game;
 
 //ADD IMAGE!!!
 import MKRefactor.Fabric.EnemyFabric;
-import MKRefactor.Game.Human;
-import MKRefactor.Game.Items;
-import MKRefactor.Game.Player;
-import MKRefactor.Game.Result;
 import MKRefactor.Character.ShaoKahn;
+import MKRefactor.Handlers.ChangeTexts;
+import MKRefactor.Handlers.CharacterAction;
 
 import javax.swing.*;
 import java.util.ArrayList;
