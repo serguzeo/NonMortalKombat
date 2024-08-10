@@ -23,8 +23,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import MortalCombat.Handlers.ChangeTexts;
-import MortalCombat.Handlers.CharacterAction;
+import MortalCombat.Game.Handlers.ChangeTexts;
+import MortalCombat.Game.Handlers.CharacterAction;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

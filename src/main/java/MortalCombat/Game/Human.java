@@ -24,7 +24,6 @@ public class Human extends Player{
             this.win = 0;
             this.locations_number = locations;
             this.current_round = 0;
-
         }
 
         public void incrementCurrentRound(){

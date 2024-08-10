@@ -1,4 +1,4 @@
-package MortalCombat.GUI;
+package MortalCombat.GUI.OldGUI;
 
 import MortalCombat.Game.*;
 
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import static MortalCombat.Handlers.ImageResizer.resizeImage;
+import static MortalCombat.GUI.ImageResizer.resizeImage;
 
 /**
  * Класс пользовательского интерфейса

@@ -1,4 +1,4 @@
-package MortalCombat.Handlers;
+package MortalCombat.GUI;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

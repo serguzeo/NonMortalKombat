@@ -23,6 +23,7 @@ public class Player {
             this.attack = attack;
             this.maxhealth = health;
         }
+
         public void incrementLevel(){
             this.level++;
         }

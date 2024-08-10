@@ -31,15 +31,19 @@ public class ChooseLocationsWindow extends JFrame {
             locationsNumberTip.setText("");
             try {
                 locationsNumber = getValidatedLocationsNumber();
+
+                setVisible(false);
+                dispose();
+                new GameWindow(mainWindow, locationsNumber);
+
             } catch (IllegalArgumentException exception) {
                 locationsNumberTip.setText(exception.getMessage());
             }
-
-
         });
 
         backToMainWindowButton.addActionListener(e -> {
             setVisible(false);
+            dispose();
             mainWindow.setVisible(true);
         });
     }

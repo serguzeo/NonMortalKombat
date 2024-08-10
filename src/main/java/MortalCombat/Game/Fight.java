@@ -5,10 +5,10 @@
 package MortalCombat.Game;
 
 //ADD IMAGE!!!
-import MortalCombat.Fabric.EnemyFabric;
-import MortalCombat.Character.ShaoKahn;
-import MortalCombat.Handlers.ChangeTexts;
-import MortalCombat.Handlers.CharacterAction;
+import MortalCombat.Game.Fabric.EnemyFabric;
+import MortalCombat.Game.Combatant.Character.ShaoKahn;
+import MortalCombat.Game.Handlers.ChangeTexts;
+import MortalCombat.Game.Handlers.CharacterAction;
 
 import javax.swing.*;
 import java.util.ArrayList;

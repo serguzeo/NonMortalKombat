@@ -4,7 +4,7 @@
  */
 package MortalCombat;
 
-import MortalCombat.GUI.JFrames;
+import MortalCombat.GUI.OldGUI.JFrames;
 
 /**
  *

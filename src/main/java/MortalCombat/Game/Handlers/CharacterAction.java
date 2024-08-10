@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MortalCombat.Handlers;
+package MortalCombat.Game.Handlers;
 
-import MortalCombat.Fabric.EnemyFabric;
+import MortalCombat.Game.Combatant.Character.*;
+import MortalCombat.Game.Fabric.EnemyFabric;
 import MortalCombat.Game.Human;
 import MortalCombat.Game.Items;
 import MortalCombat.Game.Player;
-import MortalCombat.Character.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
