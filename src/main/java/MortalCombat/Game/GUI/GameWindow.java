@@ -1,10 +1,13 @@
 package MortalCombat.Game.GUI;
 
 
+import MortalCombat.Game.Combatant.CombatantAction;
 import MortalCombat.Game.Game;
 import MortalCombat.Game.Dto.GameMessageDto;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -58,6 +61,7 @@ public class GameWindow extends JFrame {
 
         renderWindow(game.startGame(locationNumber, playerName, playerIconPath));
 
+        addListeners();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -73,7 +77,9 @@ public class GameWindow extends JFrame {
     }
 
     private void addListeners() {
-
+        attackButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.ATTACK)));
+        weakenButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.WEAKEN)));
+        defendButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.DEFEND)));
     }
 
     private void renderWindow(GameMessageDto gameMessageDto) {

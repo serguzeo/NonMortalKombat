@@ -19,4 +19,8 @@ public abstract class Combatant {
     public CombatantAction getAction() {
         return null;
     }
+
+    public void takeDamage(int damage) {
+        setHP(getHP() - damage);
+    }
 }
