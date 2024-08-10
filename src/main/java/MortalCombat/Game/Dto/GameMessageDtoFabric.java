@@ -1,7 +1,6 @@
-package MortalCombat.Game.Fabric;
+package MortalCombat.Game.Dto;
 
 import MortalCombat.Game.Combatant.Player;
-import MortalCombat.Game.Dto.GameMessageDto;
 import MortalCombat.Game.Game;
 
 public class GameMessageDtoFabric {

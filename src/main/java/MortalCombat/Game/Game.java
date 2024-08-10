@@ -1,10 +1,9 @@
 package MortalCombat.Game;
 
-import MortalCombat.Game.Combatant.Combatant;
 import MortalCombat.Game.Combatant.Enemy.Enemy;
 import MortalCombat.Game.Combatant.Player;
 import MortalCombat.Game.Dto.GameMessageDto;
-import MortalCombat.Game.Fabric.GameMessageDtoFabric;
+import MortalCombat.Game.Dto.GameMessageDtoFabric;
 import MortalCombat.Game.Item.Item;
 import lombok.Data;
 
