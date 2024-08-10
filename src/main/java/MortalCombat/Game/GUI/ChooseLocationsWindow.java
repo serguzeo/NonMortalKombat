@@ -1,5 +1,8 @@
 package MortalCombat.Game.GUI;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class ChooseLocationsWindow extends JFrame {
 
@@ -10,7 +13,12 @@ public class ChooseLocationsWindow extends JFrame {
     private JButton startGameButton;
     private JLabel locationsNumberTip;
     private JButton backToMainWindowButton;
+    private JTextField nicknameInput;
+    private JLabel nicknameTip;
+    private JButton chooseIconButton;
+
     private int locationsNumber;
+    private String playerIconPath;
 
     public ChooseLocationsWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -29,15 +37,38 @@ public class ChooseLocationsWindow extends JFrame {
     private void addListeners() {
         startGameButton.addActionListener(e -> {
             locationsNumberTip.setText("");
+            nicknameTip.setText("");
             try {
                 locationsNumber = getValidatedLocationsNumber();
 
+                if (nicknameInput.getText().length() > 20) {
+                    nicknameTip.setText("Никнейм слишком длинный!");
+                    return;
+                }
+
                 setVisible(false);
                 dispose();
-                new GameWindow(mainWindow, locationsNumber);
+
+                new GameWindow(mainWindow, locationsNumber, nicknameInput.getText(), playerIconPath);
 
             } catch (IllegalArgumentException exception) {
                 locationsNumberTip.setText(exception.getMessage());
+            }
+        });
+
+        chooseIconButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+
+                fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpeg", "jpg", "png"));
+
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    playerIconPath = selectedFile.getAbsolutePath();
+                }
             }
         });
 

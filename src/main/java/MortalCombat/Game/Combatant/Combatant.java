@@ -4,10 +4,14 @@ import lombok.Data;
 
 @Data
 public abstract class Combatant {
+    private String name;
+    private String iconPath;
+
+    private int level = 1;
     private int HP;
     private int maxHP;
 
-    private int damage;
+    private int damage = 16;
 
     private boolean isStunned;
     private int weakenedFor;

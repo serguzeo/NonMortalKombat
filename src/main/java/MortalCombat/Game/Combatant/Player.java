@@ -11,4 +11,12 @@ public class Player extends Combatant {
     public CombatantAction getAction() {
         return action;
     }
+
+    public Player(String playerName, String playerIconPath) {
+        setHP(80);
+        setMaxHP(80);
+
+        setName(playerName);
+        setIconPath(playerIconPath);
+    }
 }

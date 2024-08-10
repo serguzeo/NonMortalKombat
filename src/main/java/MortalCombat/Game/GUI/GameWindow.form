@@ -65,7 +65,8 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-16720880"/>
+                  <background color="-2359295"/>
+                  <font name="Arial Black" style="1"/>
                   <foreground color="-16720880"/>
                   <string value="100 / 100"/>
                   <stringPainted value="true"/>
@@ -152,7 +153,9 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-16720880"/>
+                  <background color="-2359295"/>
+                  <borderPainted value="true"/>
+                  <font name="Arial Black" style="1"/>
                   <foreground color="-16720880"/>
                   <string value="100 / 100"/>
                   <stringPainted value="true"/>
