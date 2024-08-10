@@ -19,7 +19,7 @@ public class GameWindow extends JFrame {
     private JPanel triggersPanel;
 
     private JButton inventoryButton;
-    private JButton debuffButton;
+    private JButton weakenButton;
     private JButton defendButton;
     private JButton attackButton;
 
