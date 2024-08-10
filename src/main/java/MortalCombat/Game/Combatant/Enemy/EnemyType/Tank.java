@@ -34,6 +34,21 @@ public class Tank implements EnemyType {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Танк";
+    }
+
+    @Override
+    public int getBaseHP() {
+        return 100;
+    }
+
+    @Override
+    public int getBaseDamage() {
+        return 12;
+    }
+
     private EnemyStrategy selectStrategy() {
         double chance = RANDOM.nextDouble();
 

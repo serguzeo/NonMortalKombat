@@ -34,6 +34,21 @@ public class Fighter implements EnemyType {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Боец";
+    }
+
+    @Override
+    public int getBaseHP() {
+        return 70;
+    }
+
+    @Override
+    public int getBaseDamage() {
+        return 20;
+    }
+
     private EnemyStrategy selectStrategy() {
         double chance = RANDOM.nextDouble();
 

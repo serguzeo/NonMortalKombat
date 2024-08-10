@@ -7,7 +7,6 @@ import MortalCombat.Game.Dto.GameMessageDto;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Objects;
 
 
 public class GameWindow extends JFrame {
@@ -39,6 +38,11 @@ public class GameWindow extends JFrame {
     private JProgressBar playerHPprogressBar;
     private JLabel enemyDamageLabel;
     private JLabel playerDamageLabel;
+    private JLabel scoreLabel;
+    private JLabel XPLabel;
+    private JLabel locationLabel;
+    private JLabel enemiesLeftLabel;
+    private JLabel messageLabel;
 
     private final ImageManager imageManager = new ImageManager();
 
@@ -73,19 +77,24 @@ public class GameWindow extends JFrame {
     }
 
     private void renderWindow(GameMessageDto gameMessageDto) {
+        scoreLabel.setText(gameMessageDto.getScore());
+        XPLabel.setText(gameMessageDto.getXP());
+        locationLabel.setText(gameMessageDto.getLocation());
+        enemiesLeftLabel.setText(gameMessageDto.getEnemiesLeft());
+        messageLabel.setText(gameMessageDto.getMessage());
 
         playerLabel.setText(gameMessageDto.getPlayerName());
         playerHPprogressBar.setValue(gameMessageDto.getPlayerProgressBarValue());
         playerHPprogressBar.setString(gameMessageDto.getPlayerProgressBarString());
         playerLevelLabel.setText(gameMessageDto.getPlayerLevel());
         playerDamageLabel.setText(gameMessageDto.getPlayerDamage());
-        playerImage.setIcon(imageManager.getIcon(gameMessageDto.getPlayerIconPath()));
+        playerImage.setIcon(imageManager.getIconFromFile(gameMessageDto.getPlayerIconPath()));
 
         enemyLabel.setText(gameMessageDto.getEnemyName());
         enemyHPprogressBar.setValue(gameMessageDto.getEnemyProgressBarValue());
         enemyHPprogressBar.setString(gameMessageDto.getEnemyProgressBarString());
         enemyLevelLabel.setText(gameMessageDto.getEnemyLevel());
         enemyDamageLabel.setText(gameMessageDto.getEnemyDamage());
-        enemyImage.setIcon(imageManager.getIcon(gameMessageDto.getEnemyIconPath()));
+        enemyImage.setIcon(imageManager.getIconFromResources(gameMessageDto.getEnemyIconPath()));
     }
 }

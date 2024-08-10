@@ -32,6 +32,21 @@ public class Soldier implements EnemyType {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Солдат";
+    }
+
+    @Override
+    public int getBaseHP() {
+        return 80;
+    }
+
+    @Override
+    public int getBaseDamage() {
+        return 16;
+    }
+
     private EnemyStrategy selectStrategy() {
         double chance = RANDOM.nextDouble();
 

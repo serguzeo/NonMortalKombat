@@ -34,6 +34,21 @@ public class Wizard implements EnemyType {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Маг";
+    }
+
+    @Override
+    public int getBaseHP() {
+        return 60;
+    }
+
+    @Override
+    public int getBaseDamage() {
+        return 16;
+    }
+
     private EnemyStrategy selectStrategy() {
         double chance = RANDOM.nextDouble();
 

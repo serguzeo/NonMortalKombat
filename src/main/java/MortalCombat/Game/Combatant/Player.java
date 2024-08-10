@@ -15,6 +15,7 @@ public class Player extends Combatant {
     public Player(String playerName, String playerIconPath) {
         setHP(80);
         setMaxHP(80);
+        setDamage(16);
 
         setName(playerName);
         setIconPath(playerIconPath);

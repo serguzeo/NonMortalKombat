@@ -1,6 +1,7 @@
 package MortalCombat.Game;
 
 import MortalCombat.Game.Combatant.Enemy.Enemy;
+import MortalCombat.Game.Combatant.Enemy.EnemyFabric;
 import MortalCombat.Game.Combatant.Player;
 import MortalCombat.Game.Dto.GameMessageDto;
 import MortalCombat.Game.Dto.GameMessageDtoFabric;
@@ -24,12 +25,14 @@ public class Game {
     private int totalLocations;
 
     private final GameMessageDtoFabric gameMessageDtoFabric = new GameMessageDtoFabric();
+    private final EnemyFabric enemyFabric = new EnemyFabric();
 
 
     public GameMessageDto startGame(Integer locationNumber, String playerName, String playerIconPath) {
         totalLocations = locationNumber;
 
         player = new Player(playerName, playerIconPath);
+        enemy = enemyFabric.createCommonEnemy(this);
 
         return gameMessageDtoFabric.createGameMessageDto(this);
     }

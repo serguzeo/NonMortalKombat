@@ -241,7 +241,7 @@
                           <text value="Опыт"/>
                         </properties>
                       </component>
-                      <component id="95055" class="javax.swing.JLabel">
+                      <component id="95055" class="javax.swing.JLabel" binding="XPLabel">
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -269,7 +269,7 @@
                           <text value="Очки"/>
                         </properties>
                       </component>
-                      <component id="69300" class="javax.swing.JLabel">
+                      <component id="69300" class="javax.swing.JLabel" binding="scoreLabel">
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -282,7 +282,7 @@
                   </grid>
                 </children>
               </grid>
-              <component id="fbe87" class="javax.swing.JLabel">
+              <component id="fbe87" class="javax.swing.JLabel" binding="locationLabel">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -295,7 +295,7 @@
                   <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="9eef6" class="javax.swing.JLabel">
+              <component id="9eef6" class="javax.swing.JLabel" binding="enemiesLeftLabel">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -309,7 +309,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="ac748" class="javax.swing.JLabel">
+              <component id="ac748" class="javax.swing.JLabel" binding="messageLabel">
                 <constraints>
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>

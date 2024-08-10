@@ -6,40 +6,41 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class ImageManager {
     @Getter
     private final Icon defaultIcon;
-    private final int defaultWidth = 182;
-    private final int defaultHeight = 276;
 
     public ImageManager() {
-        Icon defaultIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gamaz.jpg")));
-        this.defaultIcon = resizeIcon(defaultIcon, defaultWidth, defaultHeight);
+        this.defaultIcon = getIconFromResources("img/gamaz.jpg");
     }
 
-    public Icon getIcon(String filename) {
+    public Icon getIconFromFile(String filename) {
         try {
             File file = new File(filename);
             if (!file.exists()) {
                 return defaultIcon;
             }
             Image image = ImageIO.read(file);
-            return resizeIcon(new ImageIcon(image), defaultWidth, defaultHeight);
+            return resizeIcon(new ImageIcon(image));
 
         } catch (Exception e) {
             return defaultIcon;
         }
     }
 
-    public Icon resizeIcon(Icon icon, int width, int height) {
+    public Icon getIconFromResources(String resourceName) {
+        Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(resourceName)));
+        return resizeIcon(icon);
+    }
+
+    private Icon resizeIcon(Icon icon) {
         if (icon == null) {
             return null;
         }
         Image img = ((ImageIcon) icon).getImage();
-        Image resizedImage = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        Image resizedImage = img.getScaledInstance(182, 276, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
     }
 }
