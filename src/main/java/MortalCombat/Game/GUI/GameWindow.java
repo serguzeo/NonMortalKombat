@@ -85,6 +85,12 @@ public class GameWindow extends JFrame {
         attackButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.ATTACK)));
         weakenButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.WEAKEN)));
         defendButton.addActionListener(e -> renderWindow(game.processUserAction(CombatantAction.DEFEND)));
+        inventoryButton.addActionListener(e -> {
+            ItemBagDialog itemBagDialog = new ItemBagDialog(this, game);
+            itemBagDialog.pack();
+            itemBagDialog.setLocationRelativeTo(null);
+            itemBagDialog.setVisible(true);
+        });
     }
 
     protected void renderWindow(GameMessageDto gameMessageDto) {
@@ -152,7 +158,7 @@ public class GameWindow extends JFrame {
                             alert, "Уведомление", JOptionPane.INFORMATION_MESSAGE
                     );
             }
-            case JUST_VICTORY -> {
+            case JUST_VICTORY, TOP_VICTORY -> {
                 JOptionPane.showMessageDialog(null, status.getMessage(), "Победа!", JOptionPane.INFORMATION_MESSAGE);
                 exit();
             }

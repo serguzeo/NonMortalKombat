@@ -18,14 +18,16 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     private void addListeners() {
         startGameButton.addActionListener(e -> {
             setVisible(false);
-
             ChooseLocationsWindow chooseLocationsWindow = new ChooseLocationsWindow(this);
+        });
+        showScoreTableButton.addActionListener(e -> {
+            setVisible(false);
+            RatingWindow ratingWindow = new RatingWindow(this);
         });
     }
 }

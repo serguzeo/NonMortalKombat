@@ -12,6 +12,12 @@ public class Constants {
 
     public static final String JUST_VICTORY_MESSAGE = "<html>Поздравляем, вы одержали победу!</html>";
 
+    public static final String TOP_VICTORY_MESSAGE =
+            "<html>Поздравляем, вы одержали абсолютную победу!" +
+            "<br><div style='text-align:center;'>Кроме того, вы попали в ТОП-10, проверьте рейтинг!</div></html>";
+
     public static final String HANDLE_MESSAGE =
             "<html><div style='text-align:center;'>%s</div><br><div style='text-align:center;'>-%dHP %s</div></html>";
+
+    public static final String RESULTS_PATH = "Results.xlsx";
 }

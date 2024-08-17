@@ -31,7 +31,7 @@ public class ImageManager {
                 return defaultIcon;
             }
             Image image = ImageIO.read(file);
-            return resizeIcon(new ImageIcon(image));
+            return resizeIcon(new ImageIcon(image), 182, 276);
 
         } catch (Exception e) {
             return defaultIcon;
@@ -42,18 +42,18 @@ public class ImageManager {
         try {
             java.net.URL resourceURL = getClass().getClassLoader().getResource(resourceName);
             Icon icon = new ImageIcon(resourceURL);
-            return resizeIcon(icon);
+            return resizeIcon(icon, 182, 276);
         } catch (Exception e) {
             return null;
         }
     }
 
-    private Icon resizeIcon(Icon icon) {
+    public Icon resizeIcon(Icon icon, int width, int height) {
         if (icon == null) {
             return null;
         }
         Image img = ((ImageIcon) icon).getImage();
-        Image resizedImage = img.getScaledInstance(182, 276, Image.SCALE_SMOOTH);
+        Image resizedImage = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
     }
 }
