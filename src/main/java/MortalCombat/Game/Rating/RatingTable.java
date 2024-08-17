@@ -42,7 +42,7 @@ public class RatingTable {
 
         int index = new ArrayList<>(ratings).indexOf(rating);
         exportRatings(new File(RESULTS_PATH));
-        return index;
+        return index + 1;
     }
 
     public void importRatings() {
