@@ -19,6 +19,7 @@ public class AWAWStrategy implements EnemyStrategy {
         strategy.add(WEAKEN);
     }
 
+    @Override
     public CombatantAction getNextAction() {
         return strategy.poll();
     }

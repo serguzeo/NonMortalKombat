@@ -26,9 +26,30 @@ public class EnemyFabric {
 
         // создаем врага
         try {
-            EnemyType enemyInstance = enemyClass.getDeclaredConstructor().newInstance();
+            EnemyType enemyType = enemyClass.getDeclaredConstructor().newInstance();
             Character character = characterClass.getDeclaredConstructor().newInstance();
-            return new Enemy(game.getCurrentLocation(), enemyInstance, character);
+            int enemyLevel = game.getCurrentLocation(); // уровень врага соответствует номеру локации
+
+            return new Enemy(enemyLevel, enemyType, character);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Ошибка при создании экземпляра EnemyType", e);
+        }
+    }
+
+    public Enemy createBoss(Game game) {
+        // выбираем случайного босса
+        List<Class<? extends Character>> characters = characterManager.getCharacterClasses(Boss.class);
+        int characterIndex = rand.nextInt(characters.size());
+        Class<? extends Character> characterClass = characters.get(characterIndex);
+
+        // создаем врага
+        try {
+            Character character = characterClass.getDeclaredConstructor().newInstance();
+            int enemyLevel = game.getCurrentLocation(); // уровень врага соответствует номеру локации
+
+            // тип врага - босс, базовое здоровье = 50% от здоровья игрока
+            return new Enemy(enemyLevel, new Boss(game.getPlayer().getMaxHP()), character);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Ошибка при создании экземпляра EnemyType", e);

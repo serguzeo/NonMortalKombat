@@ -16,6 +16,14 @@ public class ImageManager {
         this.defaultIcon = getIconFromResources("img/gamaz.jpg");
     }
 
+    public Icon getIcon(String filename) {
+        Icon resourceIcon = getIconFromResources(filename);
+        if (resourceIcon == null) {
+            return getIconFromFile(filename);
+        }
+        return resourceIcon;
+    }
+
     public Icon getIconFromFile(String filename) {
         try {
             File file = new File(filename);
@@ -31,8 +39,13 @@ public class ImageManager {
     }
 
     public Icon getIconFromResources(String resourceName) {
-        Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(resourceName)));
-        return resizeIcon(icon);
+        try {
+            java.net.URL resourceURL = getClass().getClassLoader().getResource(resourceName);
+            Icon icon = new ImageIcon(resourceURL);
+            return resizeIcon(icon);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private Icon resizeIcon(Icon icon) {

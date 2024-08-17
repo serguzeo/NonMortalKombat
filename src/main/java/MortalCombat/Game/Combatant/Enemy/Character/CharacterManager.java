@@ -16,6 +16,7 @@ public class CharacterManager {
             case "Soldier" -> getClassesInPackage("MortalCombat.Game.Combatant.Enemy.Character.Soldier");
             case "Tank" -> getClassesInPackage("MortalCombat.Game.Combatant.Enemy.Character.Tank");
             case "Wizard" -> getClassesInPackage("MortalCombat.Game.Combatant.Enemy.Character.Wizard");
+            case "Boss" -> getClassesInPackage("MortalCombat.Game.Combatant.Enemy.Character.Boss");
             default -> throw new IllegalArgumentException("Unknown enemy class: " + enemyClass.getName());
         };
     }

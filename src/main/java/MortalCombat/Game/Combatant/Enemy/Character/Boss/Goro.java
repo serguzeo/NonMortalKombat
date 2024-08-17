@@ -1,4 +1,4 @@
-package MortalCombat.Game.Combatant.Enemy.Character.Tank;
+package MortalCombat.Game.Combatant.Enemy.Character.Boss;
 
 import MortalCombat.Game.Combatant.Enemy.Character.Character;
 

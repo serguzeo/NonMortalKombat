@@ -1,20 +1,20 @@
 package MortalCombat.Game.Handler;
 
-
 import MortalCombat.Game.Combatant.Combatant;
 import MortalCombat.Game.Combatant.CombatantAction;
-import MortalCombat.Game.StepState;
-import org.apache.commons.lang3.tuple.Pair;
 
-public class AttackAttackHandler implements CombatHandler {
+import static MortalCombat.Game.Constants.HANDLE_MESSAGE;
+
+public class AttackAttackHandler extends AbstractCombatHandler {
 
     @Override
-    public void handle(StepState state) {
-        Pair<Combatant, CombatantAction> first = state.getNextStep();
-        Pair<Combatant, CombatantAction> second = state.getNextStep();
+    protected String handleSpecific(Combatant firstCombatant, Combatant secondCombatant, CombatantAction firstAction, CombatantAction secondAction) {
+        // Урон наносит первый игрок
+        int damage = firstCombatant.getDamage();
+        damage = handleWeakness(firstCombatant, secondCombatant, damage);
+        secondCombatant.takeDamage(damage);
 
-        second.getKey().takeDamage(first.getKey().getDamage());
-
-        System.out.println(first + " " + second);
+        String message = String.format("%s атакует первее!", firstCombatant.getName());
+        return String.format(HANDLE_MESSAGE, message, damage, secondCombatant.getName());
     }
 }

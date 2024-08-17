@@ -14,11 +14,9 @@ public abstract class Combatant {
     private int damage = 16;
 
     private boolean isStunned = false;
-    private int weakenedFor = 0;
+    private int weakenFor = 0;
 
-    public CombatantAction getAction() {
-        return null;
-    }
+    public abstract CombatantAction getAction();
 
     public void takeDamage(int damage) {
         setHP(getHP() - damage);

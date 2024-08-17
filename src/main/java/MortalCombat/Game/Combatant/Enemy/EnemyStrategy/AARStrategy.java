@@ -4,19 +4,18 @@ import MortalCombat.Game.Combatant.CombatantAction;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-
 import static MortalCombat.Game.Combatant.CombatantAction.ATTACK;
-import static MortalCombat.Game.Combatant.CombatantAction.DEFEND;
+import static MortalCombat.Game.Combatant.CombatantAction.REGENERATE;
 
-public class AADStrategy implements EnemyStrategy {
+public class AARStrategy implements EnemyStrategy{
     private final Deque<CombatantAction> strategy;
 
-    public AADStrategy() {
+    public AARStrategy() {
         strategy = new ArrayDeque<>();
 
         strategy.add(ATTACK);
         strategy.add(ATTACK);
-        strategy.add(DEFEND);
+        strategy.add(REGENERATE);
     }
 
     @Override

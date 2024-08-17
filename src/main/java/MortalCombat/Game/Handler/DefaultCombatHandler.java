@@ -1,11 +1,12 @@
 package MortalCombat.Game.Handler;
 
-import MortalCombat.Game.StepState;
+import MortalCombat.Game.GameState.StepState;
 
 public class DefaultCombatHandler implements CombatHandler {
 
     @Override
-    public void handle(StepState state) {
+    public String handle(StepState state) {
         System.out.println("Подходящий обработчик не был найден");
+        return "error :(";
     }
 }

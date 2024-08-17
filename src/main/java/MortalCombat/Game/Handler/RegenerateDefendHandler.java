@@ -5,17 +5,17 @@ import MortalCombat.Game.Combatant.CombatantAction;
 
 import static MortalCombat.Game.Constants.HANDLE_MESSAGE;
 
-public class WeakenWeakenHandler extends AbstractCombatHandler {
-
+public class RegenerateDefendHandler extends AbstractCombatHandler{
     @Override
     protected String handleSpecific(Combatant firstCombatant, Combatant secondCombatant, CombatantAction firstAction, CombatantAction secondAction) {
-        // Ослабляет первый
-        int damage = (int) ((float) firstCombatant.getDamage() * 1.15);
+        // Первый игрок восстанавливает здоровье
+        int damage = 0;
         damage = handleWeakness(firstCombatant, secondCombatant, damage);
         secondCombatant.takeDamage(damage);
-        secondCombatant.setWeakenFor(firstCombatant.getLevel());
+        int regeneratedXP = (firstCombatant.getMaxHP() - firstCombatant.getHP()) / 2;
+        firstCombatant.setHP(firstCombatant.getHP() + regeneratedXP);
 
-        String message = String.format("%s ослабляет первым!", firstCombatant.getName());
+        String message = String.format("%s восстанавливает %dHP!", firstCombatant.getName(), regeneratedXP);
         return String.format(HANDLE_MESSAGE, message, damage, secondCombatant.getName());
     }
 }

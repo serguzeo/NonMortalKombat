@@ -41,8 +41,8 @@ public class ChooseLocationsWindow extends JFrame {
             try {
                 locationsNumber = getValidatedLocationsNumber();
 
-                if (nicknameInput.getText().length() > 20) {
-                    nicknameTip.setText("Никнейм слишком длинный!");
+                if (nicknameInput.getText().length() > 10) {
+                    nicknameTip.setText("Никнейм слишком длинный! (10 max)");
                     return;
                 }
 

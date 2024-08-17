@@ -19,6 +19,7 @@ public class DADStrategy implements EnemyStrategy {
         strategy.add(DEFEND);
     }
 
+    @Override
     public CombatantAction getNextAction() {
         return strategy.poll();
     }

@@ -1,4 +1,4 @@
-package MortalCombat.Game;
+package MortalCombat.Game.GameState;
 
 import MortalCombat.Game.Combatant.Combatant;
 import MortalCombat.Game.Combatant.CombatantAction;
@@ -26,5 +26,10 @@ public class StepState {
 
     public String getCombination() {
         return combatantActions.get(0) + "-" + combatantActions.get(1);
+    }
+
+    public void clear() {
+        combatants.clear();
+        combatantActions.clear();
     }
 }
