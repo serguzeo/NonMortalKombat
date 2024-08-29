@@ -4,9 +4,29 @@ import MortalCombat.Game.Combatant.Combatant;
 import MortalCombat.Game.Combatant.CombatantAction;
 import MortalCombat.Game.GameState.StepState;
 
+/**
+ * Интерфейс для обработки действий бойцов в бою.
+ * Этот интерфейс предоставляет методы для обработки различных действий бойцов и их взаимодействий.
+ */
 public interface CombatHandler {
+    /**
+     * Обрабатывает текущий шаг боя на основе состояния игры.
+     *
+     * @param state Состояние боя, содержащее информацию о текущих бойцах и их действиях.
+     * @return Сообщение, описывающее результат обработки текущего шага боя.
+     */
     String handle(StepState state);
 
+    /**
+     * Обрабатывает действия бойцов с учетом состояния "стан".
+     * Если один или оба бойца находятся в состоянии "стан", это влияет на их действия.
+     *
+     * @param firstCombatant Первый боец.
+     * @param secondCombatant Второй боец.
+     * @param firstCombatantAction Действие первого бойца.
+     * @param secondCombatantAction Действие второго бойца.
+     * @return Сообщение, описывающее результат обработки действий бойцов с учетом состояния "стан".
+     */
     default String handleWithStun(
             Combatant firstCombatant, Combatant secondCombatant,
             CombatantAction firstCombatantAction, CombatantAction secondCombatantAction
@@ -34,6 +54,15 @@ public interface CombatHandler {
         }
     }
 
+    /**
+     * Обрабатывает ослабление атакующего и цели.
+     * Уменьшает урон атакующего, если он ослаблен, и увеличивает урон цели, если она ослаблена.
+     *
+     * @param attacker Боец, наносящий урон.
+     * @param target Боец, получающий урон.
+     * @param damage Урон, который будет нанесен.
+     * @return Скорректированный урон с учетом ослабления.
+     */
     default int handleWeakness(Combatant attacker, Combatant target, int damage) {
         if (attacker.getWeakenFor() > 0 ) {
             attacker.setWeakenFor(attacker.getWeakenFor() - 1);
@@ -48,6 +77,15 @@ public interface CombatHandler {
         return damage;
     }
 
+    /**
+     * Обрабатывает действия бойца, находящегося в состоянии "стан".
+     * Выполняет действие бойца и возвращает сообщение с результатами.
+     *
+     * @param attacker Боец, выполняющий действие.
+     * @param target Боец, на которого направлено действие.
+     * @param action Действие, выполняемое бойцом.
+     * @return Сообщение, описывающее результат действия.
+     */
     default String handleActionOnStunned(Combatant attacker, Combatant target, CombatantAction action) {
         int damage = attacker.getDamage();
         damage = handleWeakness(attacker, target, damage);

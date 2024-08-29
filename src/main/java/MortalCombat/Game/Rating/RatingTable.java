@@ -15,14 +15,30 @@ import java.util.*;
 
 import static MortalCombat.Game.Constants.RESULTS_PATH;
 
+/**
+ * Класс RatingTable управляет рейтингами игроков,
+ * предоставляя методы для добавления, экспорта и импорта данных о рейтингах.
+ */
 public class RatingTable {
     private final SortedSet<Rating> ratings = new TreeSet<>(Comparator.comparingInt(Rating::getScore).reversed());
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
+    /**
+     * Возвращает список рейтингов в виде List<Rating>, отсортированный по очкам в порядке убывания.
+     *
+     * @return список объектов Rating.
+     */
     public List<Rating> getRatings() {
         return new ArrayList<>(ratings);
     }
 
+    /**
+     * Регистрирует новый рейтинг игрока. Если игрок с таким ником уже существует в таблице и
+     * новый рейтинг выше, старый заменяется.
+     *
+     * @param rating объект Rating, содержащий информацию о новом рейтинге игрока.
+     * @return позиция нового рейтинга в таблице или -1, если рейтинг не был обновлен.
+     */
     public int registerRating(Rating rating) {
         Rating existingRating = ratings.stream()
                 .filter(r -> r.getNickname().equals(rating.getNickname()))
@@ -45,6 +61,10 @@ public class RatingTable {
         return index + 1;
     }
 
+    /**
+     * Импортирует рейтинги из файла, расположенного по пути, определенному в RESULTS_PATH.
+     * Если файл не существует, создает новый файл и экспортирует текущие рейтинги.
+     */
     public void importRatings() {
         File file = new File(RESULTS_PATH);
         if (!file.exists()) {
@@ -67,6 +87,11 @@ public class RatingTable {
         }
     }
 
+    /**
+     * Экспортирует текущие рейтинги в файл Excel.
+     *
+     * @param file файл, в который будут экспортированы данные.
+     */
     private void exportRatings(File file) {
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("Results");
@@ -83,6 +108,11 @@ public class RatingTable {
         }
     }
 
+    /**
+     * Создает заголовочную строку в таблице Excel.
+     *
+     * @param sheet лист Excel, где создается заголовочная строка.
+     */
     private void createHeaderRow(Sheet sheet) {
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("#");
@@ -91,6 +121,13 @@ public class RatingTable {
         header.createCell(3).setCellValue("Дата");
     }
 
+    /**
+     * Записывает данные рейтинга в строку таблицы Excel.
+     *
+     * @param row строка, в которую записываются данные.
+     * @param rating объект Rating с данными игрока.
+     * @param place место игрока в рейтинге.
+     */
     private void writeRatingToRow(Row row, Rating rating, int place) {
         row.createCell(0).setCellValue(place);
         row.createCell(1).setCellValue(rating.getNickname());
@@ -98,6 +135,12 @@ public class RatingTable {
         row.createCell(3).setCellValue(rating.getDate().format(formatter));
     }
 
+    /**
+     * Считывает данные рейтинга из строки таблицы Excel.
+     *
+     * @param row строка Excel, из которой считываются данные.
+     * @return объект Rating с данными, считанными из строки.
+     */
     private Rating readRatingFromRow(Row row) {
         String nickname = row.getCell(1).getStringCellValue();
         int score = (int) row.getCell(2).getNumericCellValue();

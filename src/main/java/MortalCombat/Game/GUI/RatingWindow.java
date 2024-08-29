@@ -4,24 +4,27 @@ import MortalCombat.Game.Rating.Rating;
 import MortalCombat.Game.Rating.RatingTable;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static MortalCombat.Game.Constants.RESULTS_PATH;
 
+/**
+ * Окно, в котором отображается таблица рейтингов игроков.
+ */
 public class RatingWindow extends JFrame {
 
-    private MainWindow mainWindow;
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final MainWindow mainWindow;
 
     private JPanel panel;
     private JButton backToMainWindowButton;
     private JTable ratingTable;
 
+    /**
+     * Конструктор RatingWindow создает новое окно для отображения таблицы рейтингов.
+     *
+     * @param mainWindow главное окно приложения, к которому можно вернуться из окна рейтингов.
+     */
     public RatingWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
 
@@ -45,6 +48,10 @@ public class RatingWindow extends JFrame {
         });
     }
 
+    /**
+     * Заполняет таблицу рейтингов данными из рейтингового файла.
+     * Отображает место, никнейм, количество очков и дату игры каждого игрока.
+     */
     private void fillRatingTable() {
         // Заголовки колонок
         String[] columnNames = {"#", "Ник", "Очки", "Дата"};
@@ -74,9 +81,5 @@ public class RatingWindow extends JFrame {
 
         ratingTable.setRowHeight(30);
         ratingTable.setModel(tableModel);
-    }
-
-    public static void main(String[] args) {
-        RatingWindow window = new RatingWindow(new MainWindow());
     }
 }

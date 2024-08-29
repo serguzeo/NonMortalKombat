@@ -5,6 +5,11 @@ import MortalCombat.Game.Game;
 import javax.swing.*;
 import java.awt.event.*;
 
+
+/**
+ * Класс ChooseUpDialog представляет диалоговое окно, в котором игрок может выбрать улучшение для своего персонажа.
+ * Игрок может выбрать между увеличением здоровья и увеличением урона.
+ */
 public class ChooseUpDialog extends JDialog {
     private JPanel contentPane;
     private JButton healthButton;
@@ -12,6 +17,12 @@ public class ChooseUpDialog extends JDialog {
     private final Game game;
     private final GameWindow gameWindow;
 
+    /**
+     * Конструктор ChooseUpDialog инициализирует диалоговое окно для выбора улучшений.
+     *
+     * @param window окно игры, которое вызвало этот диалог.
+     * @param game   текущий объект игры.
+     */
     public ChooseUpDialog(GameWindow window, Game game) {
         setContentPane(contentPane);
         setModal(true);
@@ -23,7 +34,6 @@ public class ChooseUpDialog extends JDialog {
         healthButton.addActionListener(e -> upHealth());
         damageButton.addActionListener(e -> upDamage());
 
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -31,19 +41,23 @@ public class ChooseUpDialog extends JDialog {
             }
         });
 
-        // call upHealth() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                upHealth();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> upHealth(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Метод upHealth() вызывается, когда игрок выбирает увеличение здоровья.
+     * Он обновляет состояние игры и закрывает диалоговое окно.
+     */
     private void upHealth() {
         gameWindow.renderWindow(game.upPlayerHealth());
         dispose();
     }
 
+    /**
+     * Метод upDamage() вызывается, когда игрок выбирает увеличение урона.
+     * Он обновляет состояние игры и закрывает диалоговое окно.
+     */
     private void upDamage() {
         gameWindow.renderWindow(game.upPlayerDamage());
         dispose();

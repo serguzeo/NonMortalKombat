@@ -2,6 +2,11 @@ package MortalCombat.Game.GUI;
 
 import javax.swing.*;
 
+
+/**
+ * Класс MainWindow представляет основное окно графического интерфейса пользователя (GUI) для игры "Nonmortal Kombat".
+ * Это окно содержит элементы управления для начала игры и просмотра таблицы рекордов.
+ */
 public class MainWindow extends JFrame {
 
     private JPanel mainPanel;

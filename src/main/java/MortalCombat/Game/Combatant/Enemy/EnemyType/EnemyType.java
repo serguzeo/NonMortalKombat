@@ -1,8 +1,11 @@
 package MortalCombat.Game.Combatant.Enemy.EnemyType;
 
 import MortalCombat.Game.Combatant.CombatantAction;
-import MortalCombat.Game.Combatant.Enemy.EnemyStrategy.EnemyStrategy;
 
+/**
+ * Интерфейс, представляющий тип врага.
+ * Каждый тип врага должен реализовать этот интерфейс, чтобы определить действия, здоровье и урон врага.
+ */
 public interface EnemyType {
     String toString();
     CombatantAction getAction();

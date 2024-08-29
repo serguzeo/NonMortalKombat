@@ -5,6 +5,10 @@ import MortalCombat.Game.Combatant.CombatantAction;
 import MortalCombat.Game.GameState.StepState;
 import org.apache.commons.lang3.tuple.Pair;
 
+/**
+ * Абстрактный класс для обработки боевых действий.
+ * Предоставляет базовую реализацию для обработки боевых действий.
+ */
 public abstract class AbstractCombatHandler implements CombatHandler {
 
     @Override
@@ -24,5 +28,6 @@ public abstract class AbstractCombatHandler implements CombatHandler {
         return handleSpecific(firstCombatant, secondCombatant, first.getValue(), second.getValue());
     }
 
-    protected abstract String handleSpecific(Combatant firstCombatant, Combatant secondCombatant, CombatantAction firstAction, CombatantAction secondAction);
+    protected abstract String handleSpecific(Combatant firstCombatant, Combatant secondCombatant,
+                                             CombatantAction firstAction, CombatantAction secondAction);
 }

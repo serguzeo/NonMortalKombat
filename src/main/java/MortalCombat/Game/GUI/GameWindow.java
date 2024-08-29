@@ -13,9 +13,12 @@ import javax.swing.plaf.basic.BasicSpinnerUI;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 
-
+/**
+ * Класс GameWindow представляет игровое окно, в котором происходит взаимодействие пользователя с игрой.
+ * Окно включает в себя панель информации об игроке, панель врага, панель управления, а также игровую панель,
+ * отображающую текущее состояние игры и интерфейс управления.
+ */
 public class GameWindow extends JFrame {
     private final MainWindow mainWindow;
     private final ImageManager imageManager = new ImageManager();
@@ -56,6 +59,14 @@ public class GameWindow extends JFrame {
     private JLabel stepLabel;
 
 
+    /**
+     * Конструктор GameWindow инициализирует игровое окно, включая его компоненты и слушателей событий.
+     *
+     * @param mainWindow      главное окно приложения, к которому можно вернуться после завершения игры.
+     * @param locationNumber  количество локаций в игре.
+     * @param playerName      имя игрока.
+     * @param playerIconPath  путь к иконке игрока.
+     */
     public GameWindow(MainWindow mainWindow, int locationNumber, String playerName, String playerIconPath) {
         this.mainWindow = mainWindow;
 
@@ -93,6 +104,11 @@ public class GameWindow extends JFrame {
         });
     }
 
+    /**
+     * Обновляет интерфейс игрового окна в соответствии с текущим состоянием игры.
+     *
+     * @param gameMessageDto DTO, содержащий информацию о текущем состоянии игры.
+     */
     protected void renderWindow(GameMessageDto gameMessageDto) {
         handleAlert(gameMessageDto.getGameInfo().getStatus(), gameMessageDto.getGameInfo().getAlert());
         renderGameInfo(gameMessageDto.getGameInfo());
@@ -121,6 +137,11 @@ public class GameWindow extends JFrame {
         }
     }
 
+    /**
+     * Отображает информацию о текущем состоянии игры на панели информации.
+     *
+     * @param gameInfoDto DTO, содержащий данные о текущем состоянии игры.
+     */
     private void renderGameInfo(GameInfoDto gameInfoDto) {
         stepLabel.setText(gameInfoDto.isPlayerSteps() ? "⟽" : "⟾");
         scoreLabel.setText(String.valueOf(gameInfoDto.getScore()));
@@ -137,6 +158,12 @@ public class GameWindow extends JFrame {
         messageLabel.setText(gameInfoDto.getMessage());
     }
 
+    /**
+     * Обрабатывает различные типы оповещений и уведомлений в игре.
+     *
+     * @param status статус игры, требующий особого внимания.
+     * @param alert  текст уведомления, если имеется.
+     */
     private void handleAlert(Status status, String alert) {
         if (status == null) {
             return;
@@ -166,6 +193,18 @@ public class GameWindow extends JFrame {
         }
     }
 
+    /**
+     * Отображает информацию о состоянии бойцов в игре.
+     *
+     * @param combatantDto DTO, содержащий информацию о бойце.
+     * @param label        метка, отображающая имя бойца.
+     * @param progressBar  прогресс-бар, отображающий уровень здоровья бойца.
+     * @param levelLabel   метка, отображающая уровень бойца.
+     * @param damageLabel  метка, отображающая урон бойца.
+     * @param image        метка, отображающая изображение бойца.
+     * @param isStunned    чекбокс, отображающий состояние оглушения бойца.
+     * @param weakenFor    спиннер, отображающий продолжительность ослабления бойца.
+     */
     private void renderCombatantInfo(
             CombatantDto combatantDto,
             JLabel label,
@@ -186,6 +225,9 @@ public class GameWindow extends JFrame {
         weakenFor.setValue(combatantDto.getWeakenFor());
     }
 
+    /**
+     * Настраивает спиннеры, чтобы убрать кнопки увеличения и уменьшения.
+     */
     private void configureSpinners() {
         enemyWeakenFor.setUI(new BasicSpinnerUI() {
             @Override

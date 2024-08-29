@@ -4,9 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * Класс ChooseLocationsWindow представляет собой окно выбора параметров игры,
+ * таких как количество локаций, никнейм игрока и иконка игрока.
+ */
 public class ChooseLocationsWindow extends JFrame {
 
-    private MainWindow mainWindow;
+    private final MainWindow mainWindow;
 
     private JPanel mainPanel;
     private JSpinner locationsNumberInput;
@@ -20,6 +24,11 @@ public class ChooseLocationsWindow extends JFrame {
     private int locationsNumber;
     private String playerIconPath;
 
+    /**
+     * Конструктор ChooseLocationsWindow создает новое окно для выбора настроек игры.
+     *
+     * @param mainWindow главное окно приложения, к которому возвращаемся при нажатии кнопки "Назад".
+     */
     public ChooseLocationsWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
 
@@ -56,19 +65,16 @@ public class ChooseLocationsWindow extends JFrame {
             }
         });
 
-        chooseIconButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
+        chooseIconButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
 
-                fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpeg", "jpg", "png"));
+            fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpeg", "jpg", "png"));
 
-                int result = fileChooser.showOpenDialog(null);
+            int result = fileChooser.showOpenDialog(null);
 
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    playerIconPath = selectedFile.getAbsolutePath();
-                }
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                playerIconPath = selectedFile.getAbsolutePath();
             }
         });
 
@@ -79,6 +85,12 @@ public class ChooseLocationsWindow extends JFrame {
         });
     }
 
+    /**
+     * Проверяет введенное количество локаций и возвращает его, если оно валидно.
+     *
+     * @return Количество локаций, выбранное пользователем.
+     * @throws IllegalArgumentException если введенное количество локаций неверно.
+     */
     private int getValidatedLocationsNumber() throws IllegalArgumentException {
         if (locationsNumberInput.getValue() == null) {
             throw new IllegalArgumentException("Необходимо указать число!");
@@ -90,9 +102,5 @@ public class ChooseLocationsWindow extends JFrame {
         }
 
         return locationsNumber;
-    }
-
-    public static void main(String[] args) {
-        ChooseLocationsWindow window = new ChooseLocationsWindow(new MainWindow());
     }
 }

@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Основной класс игры "Mortal Combat", который управляет логикой игры,
+ * включая взаимодействие игрока с врагами, обработку действий и управление предметами.
+ */
 @Data
 public class Game {
     private Player player;
@@ -42,7 +46,14 @@ public class Game {
     private final CombatHandlerRegistry combatHandlerRegistry = new CombatHandlerRegistry();
     private final RatingTable ratingTable = new RatingTable();
 
-
+    /**
+     * Инициализирует новую игру с заданным количеством локаций и именем игрока.
+     *
+     * @param locationNumber Количество локаций в игре.
+     * @param playerName Имя игрока.
+     * @param playerIconPath Путь к иконке игрока.
+     * @return GameMessageDto объект с информацией о начале игры.
+     */
     public GameMessageDto startGame(Integer locationNumber, String playerName, String playerIconPath) {
         totalLocations = locationNumber;
 
@@ -54,6 +65,12 @@ public class Game {
         );
     }
 
+    /**
+     * Обрабатывает действие пользователя, выполняемое в рамках текущего игрового шага.
+     *
+     * @param combatantAction Действие игрока.
+     * @return GameMessageDto объект с информацией о результате действия.
+     */
     public GameMessageDto processUserAction(CombatantAction combatantAction) {
         // отдаем ход
         setPlayerSteps(!isPlayerSteps());
@@ -100,6 +117,11 @@ public class Game {
         );
     }
 
+    /**
+     * Возвращает список предметов, находящихся в инвентаре игрока.
+     *
+     * @return Список объектов ItemDto, представляющих предметы в инвентаре.
+     */
     public List<ItemDto> getItemBag() {
         List<ItemDto> itemDtos = new ArrayList<>();
         for (IItem item: itemBag.getItemBag().keySet()) {
@@ -108,6 +130,12 @@ public class Game {
         return itemDtos;
     }
 
+    /**
+     * Обрабатывает использование предмета игроком по его идентификатору.
+     *
+     * @param itemId Идентификатор предмета, который нужно использовать.
+     * @return GameMessageDto объект с информацией о результате использования предмета.
+     */
     public GameMessageDto processItemUsage(int itemId) {
         IItem item = itemBag.getItemById(itemId);
 
@@ -117,6 +145,11 @@ public class Game {
         return gameMessageDtoFabric.createGameMessageDto(this, new GameInfoDto());
     }
 
+    /**
+     * Увеличивает максимальное здоровье игрока и восстанавливает его.
+     *
+     * @return GameMessageDto объект с информацией о новом состоянии игрока.
+     */
     public GameMessageDto upPlayerHealth() {
         int newHealth = (int) ((float) player.getMaxHP() * 1.5);
         player.setHP(newHealth);
@@ -124,16 +157,29 @@ public class Game {
         return gameMessageDtoFabric.createGameMessageDto(this, new GameInfoDto());
     }
 
+    /**
+     * Увеличивает урон игрока.
+     *
+     * @return GameMessageDto объект с информацией о новом состоянии игрока.
+     */
     public GameMessageDto upPlayerDamage() {
         int newDamage = (int) ((float) player.getDamage() * 1.5);
         player.setDamage(newDamage);
         return gameMessageDtoFabric.createGameMessageDto(this, new GameInfoDto());
     }
 
+    /**
+     * Пытается получить новый предмет после победы над врагом.
+     */
     private void obtainNewItem() {
         itemBag.tryToGetItemsForKill(enemiesLeft == 0);
     }
 
+    /**
+     * Использует предмет из инвентаря игрока.
+     *
+     * @param item Предмет, который нужно использовать.
+     */
     private void useItem(IItem item) {
         if (itemBag.getItemBag().get(item) > 0) {
             item.useBy(player);
@@ -141,6 +187,12 @@ public class Game {
         }
     }
 
+    /**
+     * Обрабатывает поражение врага, обновляет состояние игры, начисляет очки и опыт.
+     *
+     * @param defeatedEnemy Объект врага, который был побежден.
+     * @return Статус игры после победы над врагом.
+     */
     private Status handleDeadEnemy(Enemy defeatedEnemy) {
         Status status = Status.ALERT;
 
@@ -197,18 +249,42 @@ public class Game {
         return status;
     }
 
+    /**
+     * Рассчитывает количество очков опыта (XP) за убийство врага.
+     *
+     * @return Количество XP за убийство врага.
+     */
     private int calculateXPForKill() {
         return 17;
     }
 
+    /**
+     * Рассчитывает количество очков за убийство врага на основе его уровня и текущего здоровья игрока.
+     *
+     * @param enemyLevel Уровень врага.
+     * @param playerHP Текущее здоровье игрока.
+     * @param playerMaxHP Максимальное здоровье игрока.
+     * @return Количество очков за убийство врага.
+     */
     private int calculatePointsForKill(int enemyLevel, int playerHP, int playerMaxHP) {
         return (int) (25f * enemyLevel * playerHP / playerMaxHP);
     }
 
+    /**
+     * Рассчитывает количество врагов в новой локации на основе номера локации.
+     *
+     * @param locationNumber Номер текущей локации.
+     * @return Количество врагов в новой локации.
+     */
     private int calculateNewEnemiesLeft(int locationNumber) {
         return locationNumber + 2;
     }
 
+    /**
+     * Обновляет требуемое количество опыта (XP) для повышения уровня.
+     *
+     * @param oldRequiredXP Предыдущее значение требуемого XP.
+     */
     private void updateRequiredXP(int oldRequiredXP) {
         requiredXP = (int) (oldRequiredXP * 2.25);
     }

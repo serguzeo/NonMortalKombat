@@ -4,6 +4,9 @@ import MortalCombat.Game.Combatant.Player;
 import MortalCombat.Game.Item.IItem;
 import lombok.Getter;
 
+/**
+ * Представляет собой зелье здоровья, восстанавливающее 50% от максимального здоровья игрока.
+ */
 public class HP50Potion implements IItem {
     @Getter
     private final int itemId;
@@ -34,6 +37,12 @@ public class HP50Potion implements IItem {
         return chance < CHANCE + (isBossKilled ? 0.5 : 0);
     }
 
+    /**
+     * Применяет эффект зелья к указанному игроку. Увеличивает здоровье игрока на 50% от его максимального здоровья,
+     * не превышая при этом максимальное здоровье игрока.
+     *
+     * @param player игрок, использующий зелье
+     */
     @Override
     public void useBy(Player player) {
         player.setHP(Math.min(player.getHP() + player.getMaxHP() / 2, player.getMaxHP()));

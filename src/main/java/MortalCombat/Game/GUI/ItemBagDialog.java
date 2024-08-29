@@ -2,13 +2,16 @@ package MortalCombat.Game.GUI;
 
 import MortalCombat.Game.Dto.ItemDto;
 import MortalCombat.Game.Game;
-import MortalCombat.Game.Rating.Rating;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Класс ItemBagDialog представляет диалоговое окно инвентаря игрока,
+ * где отображаются все доступные предметы и их количество. Игрок может использовать предметы из этого окна.
+ */
 public class ItemBagDialog extends JDialog {
     private JPanel contentPane;
     private JPanel itemPanel;
@@ -17,6 +20,12 @@ public class ItemBagDialog extends JDialog {
     private final GameWindow gameWindow;
     private final ImageManager imageManager = new ImageManager();
 
+    /**
+     * Конструктор ItemBagDialog инициализирует диалоговое окно для отображения инвентаря.
+     *
+     * @param gameWindow окно игры, вызвавшее этот диалог.
+     * @param game       текущий объект игры.
+     */
     public ItemBagDialog(GameWindow gameWindow, Game game) {
         setContentPane(contentPane);
         setModal(true);
@@ -28,6 +37,9 @@ public class ItemBagDialog extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Метод fillItemScrollPanel() заполняет панель с предметами, отображая каждый предмет в инвентаре.
+     */
     private void fillItemScrollPanel() {
         List<ItemDto> itemDtoList = game.getItemBag();
         itemDtoList = itemDtoList.stream().sorted(Comparator.comparingInt(ItemDto::getId)).toList();
@@ -47,6 +59,12 @@ public class ItemBagDialog extends JDialog {
         itemPanel.repaint();
     }
 
+    /**
+     * Метод createItemDetailPanel(ItemDto itemDto) создает панель, содержащую информацию о предмете.
+     *
+     * @param itemDto объект ItemDto, содержащий информацию о предмете.
+     * @return панель с деталями предмета.
+     */
     private JPanel createItemDetailPanel(ItemDto itemDto) {
         JPanel itemDetailPanel = new JPanel();
         itemDetailPanel.setLayout(new BoxLayout(itemDetailPanel, BoxLayout.Y_AXIS));
